@@ -67,7 +67,7 @@ jQuery(document).ready(function($) {
                             )
                     }else{
 
-                        cookiesData = Cookies.set('idcalling', response, {expires: 1 }, { path: '/mniv1' });
+                        cookiesData = Cookies.set('idcalling', response, {expires: 1 }, { path: '/mniv2' });
                         Cookies.set('startcall', true, { expires: 1});
                          $(".submit").addClass("loading");
                             setTimeout(function() {

@@ -28,6 +28,7 @@
                                   
                       <thead>
                           <tr>
+                             <th>id</th>
                             <th>Agent</th>
                             <th>compname</th>
                             <th>compname_d</th>
@@ -212,15 +213,21 @@
                       if ($historydataerr) {
                           echo "cURL Error #:" . $historydataerr;
                         } else {
-                      
+                        
+
+
                            $history = json_decode($historydata, true);
+
              
-                              foreach ($history as $key => $histories) 
+                              foreach ($history['nrmnidata'] as $key => $histories) 
                               {
                                 $dateformat  = new DateTime($histories['created_at']);
                                  $callstart = new DateTime($histories['callstart']);
+                                  $userid = $histories['user_id'];
+                                  $userDataId =  $userid  - 1;
                                 echo '<tr>'; 
-                                  echo '<td>'.$histories['user_id'].'</td>';
+                                   echo '<td>'.$histories['id'].'</td>';
+                                  echo '<td>'.$history['users'][$userDataId]['name'].'</td>';
                                   echo '<td>'.$histories['compname'].'</td>';
                                   echo '<td>'.$histories['compname_d'].'</td>';
                                   echo '<td>'.$histories['akadba'].'</td>';

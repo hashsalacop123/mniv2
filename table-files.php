@@ -5,6 +5,7 @@
                             <thead>
                                 <tr>
                                   <th>ID's</th>
+                                  <th>Agent</th>
                                   <th>Compname</th>
                                   <th>Status Call</th>
                                   <th>Uploaded Date</th>
@@ -16,16 +17,31 @@
                                <tbody>
                           <?php 
                                  $dataUploaded = json_decode($response, true);
+                                  // echo '<pre>';
+                                  //    print_r($dataUploaded['users']); 
                                   $dataId = $dataUploaded['dataUploaded'];
                                   foreach ($dataId as $key => $dataIds) {
                                     $callStatus = $dataIds['status_call'];
                                     $numberCalls = $dataIds['callPriority'] - 1;
-
+                                    
                                     $dateuploaded = new DateTime ($dataIds['created_at']);
                                     $filesGroup = $dataIds['filesName'];
                                     $idrow = $dataIds['id'];
+                                    $userID = $dataIds['user_id'];
+                                    
+
+                                    $name = 'No Agent';
+
+                                    if($userID == NULL) {
+                                        $name;
+                                    }else {
+                                      $iduser  = $userID - 1;
+                                      $name = $dataUploaded['users'][$iduser]['name'];
+                                    }
+
                                       echo '<tr>';
-                                        echo '<td>'.$idrow.'</td>';
+                                       echo '<td>'.$idrow.'</td>';
+                                        echo '<td>'.$name.'</td>';
                                         echo '<td>'.$dataIds['compname'].'</td>';
                                         echo '<td>'; 
                                           if($callStatus == '2'){
@@ -51,6 +67,8 @@
                            </tbody>
                         </table>
                        </div>
+                
+
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
                         
                       <thead>
@@ -253,7 +271,7 @@
                                 $callstart = new DateTime($dataarrays['callstart']);
 
 
-                                  echo '<tr data-fancybox data-src="#'.$dataarrays['id'].'" href="javascript:;">'; 
+                                  echo '<tr data-src="#'.$dataarrays['id'].'" href="javascript:;" class = "data-fbox">'; 
                                        echo '<td>'.$dataarrays['compname'].'</td>';
                                        echo '<td>'.$dataarrays['compname_d'].'</td>';
                                        echo '<td>'.$dataarrays['akadba'].'</td>';
