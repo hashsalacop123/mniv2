@@ -122,6 +122,7 @@ $('#userdata').dataTable();
                                         var settings = {
                                             "async": true,
                                             "crossDomain": true,
+                                            //"url": "https://mniapi.openlookeasydata.com/api/auth/delivered",
                                             "url": "http://127.0.0.1:8000/api/auth/delivered/",
                                             "method": "PUT",
                                             "headers": {

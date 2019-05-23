@@ -33,6 +33,7 @@ $(document).on('click','.restore-btn', function(){
 										var settings = {
 											  "async": true,
 											  "crossDomain": true,
+											 // "url": "https://mniapi.openlookeasydata.com/api/auth/restoredelivered",
 											  "url": "http://127.0.0.1:8000/api/auth/restoredelivered/",
 											  "method": "PUT",
 											  "headers": {
@@ -79,6 +80,7 @@ $(document).on('click','.restore-btn', function(){
 	        var settings = {
 				  "async": true,
 				  "crossDomain": true,
+				  //"url": "https://mniapi.openlookeasydata.com/api/auth/qeflag/" + dataId,
 				  "url": "http://127.0.0.1:8000/api/auth/qeflag/" + dataId,
 				  "method": "POST",
 				  "headers": {

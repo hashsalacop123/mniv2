@@ -19,6 +19,7 @@ jQuery(document).ready(function($) {
         var settings = {
             "async": true,
             "crossDomain": true,
+            //"url": "https://mniapi.openlookeasydata.com/api/auth/statusupdate/" + idBtn,
             "url": "http://127.0.0.1:8000/api/auth/statusupdate/" + idBtn,
             "method": "PUT",
             "headers": {
@@ -52,6 +53,7 @@ jQuery(document).ready(function($) {
         var settings = {
             "async": true,
             "crossDomain": true,
+            //"url": "https://mniapi.openlookeasydata.com/api/auth/importdata",
             "url": "http://127.0.0.1:8000/api/auth/importdata",
             "method": "POST",
             "headers": {
@@ -157,6 +159,7 @@ jQuery(document).ready(function($) {
             var settings = {
                 "async": true,
                 "crossDomain": true,
+                //"url": "https://mniapi.openlookeasydata.com/api/auth/signup",
                 "url": "http://127.0.0.1:8000/api/auth/signup",
                 "method": "POST",
                 "headers": {

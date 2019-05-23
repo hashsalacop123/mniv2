@@ -39,6 +39,7 @@ if(isset($_SESSION['loggedIN'])) {
       $curl = curl_init();
           curl_setopt_array($curl, array(
           CURLOPT_PORT => "8000",
+          //CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/nrdata",
           CURLOPT_URL => "http://127.0.0.1:8000/api/auth/nrdata/",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
@@ -154,6 +155,7 @@ if(isset($_SESSION['loggedIN'])) {
               $curl = curl_init();
               curl_setopt_array($curl, array(
                 CURLOPT_PORT => "8000",
+                // CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/alluser",
                 CURLOPT_URL => "http://127.0.0.1:8000/api/auth/alluser",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",

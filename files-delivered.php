@@ -4,6 +4,7 @@
      $bearer = $_COOKIE['tokken'];
     curl_setopt_array($curl, array(
       CURLOPT_PORT => "8000",
+      //CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/datadelivered",
       CURLOPT_URL => "http://127.0.0.1:8000/api/auth/datadelivered/",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",

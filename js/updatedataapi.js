@@ -344,6 +344,7 @@ jQuery(document).ready(function($) {
                     var settings = {
                         "async": true,
                         "crossDomain": true,
+                        //"url": "https://mniapi.openlookeasydata.com/api/auth/duplicate",
                         "url": "http://127.0.0.1:8000/api/auth/duplicate/",
                         "method": "POST",
                         "headers": {

@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
         var settings = {
             "async": true,
             "crossDomain": true,
+            //"url": "https://mniapi.openlookeasydata.com/api/auth/userinfo",
             "url": "http://127.0.0.1:8000/api/auth/userinfo",
             "method": "GET",
             "headers": {
@@ -33,6 +34,7 @@ jQuery(document).ready(function($) {
         var settings = {
             "async": true,
             "crossDomain": true,
+            //"url": "https://mniapi.openlookeasydata.com/api/auth/startcall",
             "url": "http://127.0.0.1:8000/api/auth/startcall",
             "method": "POST",
             "headers": {
@@ -78,7 +80,7 @@ jQuery(document).ready(function($) {
                               $(".submit").removeClass("hide-loading");
                               $(".done").removeClass("finish");
                               $(".failed").removeClass("finish");
-                                window.location.replace('/mniv1')
+                                window.location.replace('/mniv2')
                             }, 2000);
 
                     }
