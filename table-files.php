@@ -467,29 +467,32 @@
             $dataValue = 0;
       foreach ($dataarray as $key => $dataarrays) {
 
-
-
            echo '<div style="display: none;" id="'.$dataarrays['id'].'" class = "wrapper-'.$dataarrays['id'].'">'; ?>
                <table class="table">
                   <tbody>
                     <tr>
-                        <th>Group ID</th>
+                        <th>Group ID test</th>
                           <td><?php
                               $dataGroup =  $dataarrays['filesName'];
                               echo rtrim($dataGroup,".csv"); ?></td>
+
                       </tr>
                            <tr>
                         <th>Agent Notes</th>
                           <td><?php echo $dataarrays['agentsnotes']; ?></td>
                       </tr>
                      <tr>
-                        <th>ID Number</th>
-                          <td><?php echo $dataarrays['nr_mni_data_id']; ?></td>
+                        <th>Data Id</th>
+                          <td><?php echo $dataarrays['id']; ?></td>
                       </tr>
 
                     <tr>
                         <th>compname</th>
-                          <td><?php echo $dataarrays['compname']; ?></td>
+                          <td><input type="text" name="compname" readonly="readonly" class="form-control" value="<?php echo $dataarrays['compname']; ?>"/></td>
+                          <td>
+                          <input type="checkbox" name="compnamecheck" id="compnamecheck" class="compnamecheck"/>
+
+                          </td>
                       </tr>
 
                       <tr>

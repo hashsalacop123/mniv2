@@ -635,4 +635,13 @@ input#testid {
     text-align: center;
     background: #5b5c5d;
     color: #fff;
+}table.table input {
+    border: 1px solid;
+}
+table.table input:focus {
+   border: 0px solid;
+}
+table.table input[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
 }

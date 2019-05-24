@@ -1264,20 +1264,22 @@
 <div class="inputGroupContainer col-sm-8">
    <select class="form-control" id="fdisp" name="fdisp">
       <option></option>
-      <option id = "good-update" disabled="disabled" value="01-Good update">01-Good update</option>
-      <option value="02-Refusal/hung Up">02-Refusal/hung Up</option>
-      <option value="03-Already Answered">03-Already Answered</option>
-      <option value="04-No manufacturing">04-No manufacturing</option>
-      <option value="05-Out of Business">05-Out of Business</option>
-      <option value="06-Send Fax/email Information Request">06-Send Fax/email Information Request</option>
-      <option value="07-Disconnected/NIS Phone">07-Disconnected/NIS Phone</option>
-      <option value="08-Wrong Numbers">08-Wrong Numbers</option>
-      <option value="09-Answering Machine with Company Name">09-Answering Machine with Company Name</option>
-      <option value="10-Call Back request">10-Call Back request</option>
-      <option value="11-Other">11-Other</option>
-      <option value="12-No Answer">12-No Answer</option>
-      <option value="13-Busy">13-Busy</option>
-      <option value="14-Answering Machine with Different Company Name">14-Answering Machine with Different Company Name</option>
-      <option value="14-Answering Machine with Different Company Name">15-Answering Machine without Company Name</option>
+      <option id = "good-update" disabled="disabled" value="01-Good update">01-Good Update</option>
+      <option value="03-Incomplete Update">03-Incomplete Update</option>
+      <option value="05-Already Answered">05-Already Answered</option>
+      <option value="06-No Manufacturing">06-No Manufacturing</option>
+      <option value="07-Out of Business">07-Out of Business</option>
+      <option value="08-Send Information">08-Send Information</option>
+      <option value="09-Refusal/Unworkable">09-Refusal/Unworkable</option>
+      <option value="10-Wrong Number">10-Wrong Number</option>
+      <option value="11-Answering Machine">11-Answering Machine</option>
+      <option value="12-Callback">12-Callback</option>
+      <option value="13-Other">13-Other</option>
+      <option value="17-No Answer">17-No Answer</option>
+      <option value="18-Busy">18-Busy</option>
+      <option value="96-1st Pass Unworkable">96-1st Pass Unworkable</option>
+      <option value="97-Callback requested">97-Callback requested</option>
+      <option value="98-2x No Answer (priority 7/8/9)">98-2x No Answer (priority 7/8/9)</option>
+      <option value="99-AM 3x">99-AM 3x</option>
    </select>
 </div>

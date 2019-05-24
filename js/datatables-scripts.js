@@ -3,15 +3,15 @@ jQuery(document).ready(function($) {
 
 
 $(document).on('click','.data-fbox',function(){
-    var dataid = $(this).attr("data-src");
+     var dataid = $(this).attr("data-src");
     swal("Enter your Authorized Code", {
           content: "input",
         })
         .then((value) => {
-             if(value != '1') {
+             if(value != '123') {
                   Swal.fire('Sorry, you are not authorized');
                 }else {
-                      $.fancybox.open({
+                   $.fancybox.open({
                             src  : dataid,
                             type : 'inline',
                             opts : {
@@ -22,11 +22,9 @@ $(document).on('click','.data-fbox',function(){
                         });
                 }
         });
+
+             
 });
-
-
-
-
     var d = new Date();
     var month = d.getMonth() + 1;
     var day = d.getDate();

@@ -111,22 +111,23 @@ if(isset($_SESSION['loggedIN'])) {
                                 </div>
                                 <div class = "col-md-4">
                                    <select class="form-control" id="fdisp" name="fdisp">
-                                      <option></option>
-                                      <option  value="01">01-Good update</option>
-                                      <option value="02">02-Refusal/hung Up</option>
-                                      <option value="03">03-Already Answered</option>
-                                      <option value="04">04-No manufacturing</option>
-                                      <option value="05">05-Out of Business</option>
-                                      <option value="06">06-Send Fax/email Information Request</option>
-                                      <option value="07">07-Disconnected/NIS Phone</option>
-                                      <option value="08">08-Wrong Numbers</option>
-                                      <option value="09">09-Answering Machine with Company Name</option>
-                                      <option value="10">10-Call Back request</option>
-                                      <option value="11">11-Other</option>
-                                      <option value="12">12-No Answer</option>
-                                      <option value="13">13-Busy</option>
-                                      <option value="14">14-Answering Machine with Different Company Name</option>
-                                      <option value="14">15-Answering Machine without Company Name</option>
+                              <option value="01-Good update">01-Good Update</option>
+                                      <option value="03">03-Incomplete Update</option>
+                                      <option value="05">05-Already Answered</option>
+                                      <option value="06">06-No Manufacturing</option>
+                                      <option value="07">07-Out of Business</option>
+                                      <option value="08">08-Send Information</option>
+                                      <option value="09">09-Refusal/Unworkable</option>
+                                      <option value="10">10-Wrong Number</option>
+                                      <option value="11">11-Answering Machine</option>
+                                      <option value="12">12-Callback</option>
+                                      <option value="13">13-Other</option>
+                                      <option value="17">17-No Answer</option>
+                                      <option value="18">18-Busy</option>
+                                      <option value="96">96-1st Pass Unworkable</option>
+                                      <option value="97">97-Callback requested</option>
+                                      <option value="98">98-2x No Answer (priority 7/8/9)</option>
+                                      <option value="99">99-AM 3x</option>
                                    </select>
                                 </div>
                                 <div class = "col-md-2">
