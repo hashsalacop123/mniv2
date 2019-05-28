@@ -1,10 +1,71 @@
 jQuery(document).ready(function($) { 
 
+var cookiesTokken = Cookies.get('tokken');
 
+$(document).on('click','#savesettings', function(){
+
+            var radioValue = $("input[name='calls_set']:checked").val();
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "http://127.0.0.1:8000/api/auth/callset",
+              "method": "PUT",
+              "headers": {
+               "authorization": "Bearer  " + cookiesTokken,
+                "content-type": "application/x-www-form-urlencoded",
+                "cache-control": "no-cache",
+                "postman-token": "26d17657-e6c7-516e-60ad-268a0796017d"
+              },
+              "data": {
+                "calls_set": radioValue
+              }
+            }
+
+            $.ajax(settings).done(function (response) {
+            //  console.log(response);
+              Swal.fire({
+                      position: 'center',
+                      type: 'success',
+                      title: 'You Set The Call to ' + radioValue,
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+                    setTimeout(function() {
+                         location.reload();
+                    }, 2000);
+            });
+
+});
+
+
+$(document).on('click','#settpopup',function(){
+              swal("Enter your Authorized Code", {
+                  content: "input",
+                })
+                .then((value) => {
+                     if(value != '123') {
+                          Swal.fire('Sorry, you are not authorized');
+                        }else {
+                           $.fancybox.open({
+                                    src  : callsettings,
+                                    type : 'inline',
+                                    opts : {
+                                        beforeShow : function( instance, current ) {
+                                        // the last of the 
+                                      }
+                                    }
+                                });
+                        }
+                });
+
+         
+   
+});
 
 $(document).on('click','.data-fbox',function(){
      var dataid = $(this).attr("data-src");
-    swal("Enter your Authorized Code", {
+      swal("Enter your Authorized Code", {
           content: "input",
         })
         .then((value) => {

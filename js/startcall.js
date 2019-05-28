@@ -62,8 +62,8 @@ jQuery(document).ready(function($) {
 
                     if(response == 'queCall') {
                             Swal.fire(
-                              'All Agents Are taking Calls',
-                              'Please wait for a moment'
+                              'All data are already done.',
+                              'Please inform your supervisor.'
                             )
                     }else{
 

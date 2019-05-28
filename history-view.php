@@ -214,20 +214,20 @@
                           echo "cURL Error #:" . $historydataerr;
                         } else {
                         
-
-
                            $history = json_decode($historydata, true);
 
-             
                               foreach ($history['nrmnidata'] as $key => $histories) 
                               {
+
                                 $dateformat  = new DateTime($histories['created_at']);
                                  $callstart = new DateTime($histories['callstart']);
-                                  $userid = $histories['user_id'];
-                                  $userDataId =  $userid  - 1;
+                               
+                                  // echo '<pre>';
+                                  // print_r($histories);
+
                                 echo '<tr>'; 
                                    echo '<td>'.$histories['id'].'</td>';
-                                  echo '<td>'.$history['users'][$userDataId]['name'].'</td>';
+                                  echo '<td>'.$histories['user']['name'].'</td>';
                                   echo '<td>'.$histories['compname'].'</td>';
                                   echo '<td>'.$histories['compname_d'].'</td>';
                                   echo '<td>'.$histories['akadba'].'</td>';

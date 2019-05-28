@@ -17,31 +17,24 @@
                                <tbody>
                           <?php 
                                  $dataUploaded = json_decode($response, true);
-                                  // echo '<pre>';
-                                  //    print_r($dataUploaded['users']); 
+                                  // echo "<pre>";
+                                  // print_r($dataUploaded);
+                  
                                   $dataId = $dataUploaded['dataUploaded'];
                                   foreach ($dataId as $key => $dataIds) {
+
                                     $callStatus = $dataIds['status_call'];
-                                    $numberCalls = $dataIds['callPriority'] - 1;
-                                    
+                                    $numberCalls = $dataIds['callPriority'];
                                     $dateuploaded = new DateTime ($dataIds['created_at']);
                                     $filesGroup = $dataIds['filesName'];
                                     $idrow = $dataIds['id'];
                                     $userID = $dataIds['user_id'];
-                                    
-
-                                    $name = 'No Agent';
-
-                                    if($userID == NULL) {
-                                        $name;
-                                    }else {
-                                      $iduser  = $userID - 1;
-                                      $name = $dataUploaded['users'][$iduser]['name'];
-                                    }
 
                                       echo '<tr>';
                                        echo '<td>'.$idrow.'</td>';
-                                        echo '<td>'.$name.'</td>';
+
+
+                                        echo '<td>'.$dataIds['user']['name'].'</td>';
                                         echo '<td>'.$dataIds['compname'].'</td>';
                                         echo '<td>'; 
                                           if($callStatus == '2'){

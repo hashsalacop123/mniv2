@@ -63,6 +63,7 @@ jQuery(document).ready(function($) {
 				}
 
 				$.ajax(settings).done(function (response) {
+					console.log(response);
 				  var tooken = response['access_token'];
 				  var role = response['role'];
 				    $('#tokken').val(tooken);
@@ -73,8 +74,7 @@ jQuery(document).ready(function($) {
 				});
 	      		
 	      		 $.ajax(settings).fail(function (response) {
-            	      console.log('fail');
-
+	      		 	console.log(response);
             	      Swal.fire({
 						  type: 'error',
 						  title: 'Oops...',

@@ -67,7 +67,7 @@ jQuery(document).ready(function($) {
                         }
                         var dataPlus1 = response['countcall'] + 1;
                         var datacounting = $('#datacounting').val();
-                        var dataCallNumber = dataResponse['callPriority'] - 1;
+                        var dataCallNumber = dataResponse['callPriority'];
                         
                         $(".thenumber").append("  <div class = 'call-number'>Number of Call <span class='number'>" + dataCallNumber + "</span></div>");
 

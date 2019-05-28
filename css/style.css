@@ -645,3 +645,11 @@ table.table input[readonly] {
     background-color: #e9ecef;
     opacity: 1;
 }
+#callsettings #savesettings {
+    text-align: center;
+    width: 100%;
+    margin-top: 25px;
+}
+div#callsettings h3 {
+    margin-bottom: 2em;
+}

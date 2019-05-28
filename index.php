@@ -39,7 +39,6 @@ if(isset($_SESSION['loggedIN'])) {
                                    <div class = "col-xs-12 col-sm-12 col-md-4 col-lg-4 openlooklogo" >
                                             <img src="img/open-look-logo-white.png" alt="logo" class = "imageRotateHorizontal img-fluid"/>
 
-                    <a href = "#" id = "logout" >Logout <i class="fas fa-sign-out-alt"></i></a>
                                    </div>
                               </div>
                          
@@ -112,11 +111,12 @@ if(isset($_SESSION['loggedIN'])) {
             </div>
          </div>
       </div>
+       
 
       <?php include('footer.php'); ?>
     
     
             <script  src="js/getdataapi.js" type="text/javascript"></script>
-
+       
 
 </html>
