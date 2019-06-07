@@ -40,7 +40,7 @@ if(isset($_SESSION['loggedIN'])) {
           curl_setopt_array($curl, array(
           CURLOPT_PORT => "8000",
           //CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/nrdata",
-          CURLOPT_URL => "http://127.0.0.1:8000/api/auth/nrdata/",
+          CURLOPT_URL => "http://172.16.11.120:8000/api/auth/nrdata",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_CUSTOMREQUEST => "GET",
@@ -51,6 +51,8 @@ if(isset($_SESSION['loggedIN'])) {
       $response = curl_exec($curl);
       $err = curl_error($curl);
       curl_close($curl);
+
+
 
    ?>
     
@@ -162,7 +164,7 @@ if(isset($_SESSION['loggedIN'])) {
               curl_setopt_array($curl, array(
                 CURLOPT_PORT => "8000",
                 // CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/alluser",
-                CURLOPT_URL => "http://127.0.0.1:8000/api/auth/alluser",
+                CURLOPT_URL => "http://172.16.11.120:8000/api/auth/alluser",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -227,7 +229,7 @@ if(isset($_SESSION['loggedIN'])) {
       $curl = curl_init();
       curl_setopt_array($curl, array(
       CURLOPT_PORT => "8000",
-      CURLOPT_URL => "http://127.0.0.1:8000/api/auth/getsets",
+      CURLOPT_URL => "http://172.16.11.120:8000/api/auth/getsets",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
@@ -254,42 +256,108 @@ curl_close($curl);
         <?php if ($err) {
             echo "cURL Error #:" . $err;
           } else {
-            // echo $getsets;
-
             $dataradio = json_decode($getsets, true);
 
-               // $radiobtn = 
-
-              
-              // echo $radiobtn; 
           }?>
 
               <h3 class="data-title">SET THE AGENT CALLS</h3>
-             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio"  <?php echo  ($dataradio['calls_set'] == '0' ? 'checked="checked"' : ''); ?>value = '0' id="set1"  name="calls_set" class="custom-control-input">
-              <label class="custom-control-label" for="set1">SET 0</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" <?php echo  ($dataradio['calls_set'] == '1' ? 'checked="checked"' : ''); ?> value = '1'  id="set2" name="calls_set" class="custom-control-input">
-              <label class="custom-control-label" for="set2">SET 1</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" <?php echo  ($dataradio['calls_set'] == '2' ? 'checked="checked"' : ''); ?>  value = '2' id="set3" name="calls_set" class="custom-control-input">
-              <label class="custom-control-label" for="set3">SET 2</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" <?php echo  ($dataradio['calls_set'] == '3' ? 'checked="checked"' : ''); ?> value = '3' id="set4" name="calls_set" class="custom-control-input">
-              <label class="custom-control-label" for="set4">SET 3</label>
-            </div>
-              <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio"  <?php echo  ($dataradio['calls_set'] == '4' ? 'checked="checked"' : ''); ?> value = '4' id="set5" name="calls_set" class="custom-control-input">
-              <label class="custom-control-label" for="set5">SET 4</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio"  <?php echo  ($dataradio['calls_set'] == '5' ? 'checked="checked"' : ''); ?> value = '5' id="set6" name="calls_set" class="custom-control-input">
-              <label class="custom-control-label" for="set6">SET 5</label>
-            </div>
-            <button type="button"  id="savesettings" class="btn btn-success">SET NOW</button>
+                <div class = "settings-container container">
+                  <ul>
+                      <li>
+                               <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio"  <?php echo  ($dataradio['calls_set'] == '0' ? 'checked="checked"' : ''); ?>value = '0' id="set1"  name="calls_set" class="custom-control-input">
+                                        <label class="custom-control-label" for="set1">SET 0</label>
+                            </div>
+                      </li>
+                      <li>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" <?php echo  ($dataradio['calls_set'] == '1' ? 'checked="checked"' : ''); ?> value = '1'  id="set2" name="calls_set" class="custom-control-input">
+                              <label class="custom-control-label" for="set2">SET 1</label>
+                            </div>
+                      </li>
+                      <li>
+                           <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" <?php echo  ($dataradio['calls_set'] == '2' ? 'checked="checked"' : ''); ?>  value = '2' id="set3" name="calls_set" class="custom-control-input">
+                              <label class="custom-control-label" for="set3">SET 2</label>
+                            </div>
+                      </li>
+                      <li>   <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" <?php echo  ($dataradio['calls_set'] == '3' ? 'checked="checked"' : ''); ?> value = '3' id="set4" name="calls_set" class="custom-control-input">
+                              <label class="custom-control-label" for="set4">SET 3</label>
+                            </div>
+                        
+                      </li>
+                      <li>  <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio"  <?php echo  ($dataradio['calls_set'] == '4' ? 'checked="checked"' : ''); ?> value = '4' id="set5" name="calls_set" class="custom-control-input">
+                              <label class="custom-control-label" for="set5">SET 4</label>
+                            </div>
+                        
+                      </li>
+                      <li>   
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio"  <?php echo  ($dataradio['calls_set'] == '5' ? 'checked="checked"' : ''); ?> value = '5' id="set6" name="calls_set" class="custom-control-input">
+                              <label class="custom-control-label" for="set6">SET 5</label>
+                            </div>
+                        
+                      </li>
+                      
+
+                  </ul>
+                   <div class = "row">
+
+                    <?php
+
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                  CURLOPT_PORT => "8000",
+                  CURLOPT_URL => "http://172.16.11.120:8000/api/auth/uploadnames",
+                  CURLOPT_RETURNTRANSFER => true,
+                  CURLOPT_ENCODING => "",
+                  CURLOPT_MAXREDIRS => 10,
+                  CURLOPT_TIMEOUT => 30,
+                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                  CURLOPT_CUSTOMREQUEST => "GET",
+                  CURLOPT_HTTPHEADER => array(
+                    "authorization: Bearer  ".$bearer."",
+                    "cache-control: no-cache",
+                    "postman-token: 66e3bde2-4e25-1785-8602-ae12832a0225"
+                  ),
+                ));
+
+                $selections = curl_exec($curl);
+                $err = curl_error($curl);
+
+                curl_close($curl);
+
+                if ($err) {
+                  echo "cURL Error #:" . $err;
+                } else {
+
+                }
+                 
+                 $dataselection  = json_decode($selections, true);
+
+                 ?>
+                      <label class="col-md-3 file-dataname"><b>FILE DATA</b></label>
+                      <div class = "col-md-9">
+                             <select id="selectiondata" name="selectiondata" class="form-control qeflag">
+                              <?php 
+                                  foreach ($dataselection as $key => $dataselections) { ?>
+                                       <option <?php echo ($dataradio['filenameId'] == $dataselections['filesName']) ? 'selected="selected"' : ''; ?> value = "<?php echo $dataselections['filesName']; ?>"><?php echo $dataselections['filesNamePath']; ?></option>;
+                                  <?php }
+                              ?>
+                              </select>
+
+
+                       </div>
+                 </div>
+                          
+                           
+                           
+                         
+                            <button type="button"  id="savesettings" class="btn btn-success">SET NOW</button>
+                </div>
+            
       </div>
    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
    <script src="js/database.js"></script>>

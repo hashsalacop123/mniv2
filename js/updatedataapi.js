@@ -2,8 +2,6 @@ jQuery(document).ready(function($) {
      var updateCookie = Cookies.get('tokken');
 
     $(document).on('click', '#update-btn', function() {
-    
-
         var dataCounting = $('#datacounting').val();
         var mniDataId = $('#id').val();
         var updatedata = $('#dataform').serializeArray();
@@ -345,7 +343,7 @@ jQuery(document).ready(function($) {
                         "async": true,
                         "crossDomain": true,
                         //"url": "https://mniapi.openlookeasydata.com/api/auth/duplicate",
-                        "url": "http://127.0.0.1:8000/api/auth/duplicate/",
+                        "url": "http://172.16.11.120:8000/api/auth/duplicate/",
                         "method": "POST",
                         "headers": {
                             "content-type": "application/x-www-form-urlencoded",
@@ -362,7 +360,7 @@ jQuery(document).ready(function($) {
                     Cookies.remove('callstartCaptured');
                          setTimeout(function() {
                              window.location.replace('startcall')
-                         },2000)
+                         },1000)
                     // location.reload('startcall');    
                 } else if (
                     // Read more about handling dismissals
@@ -376,5 +374,7 @@ jQuery(document).ready(function($) {
                 }
             })
         }
+
+        return false;
     });
 });

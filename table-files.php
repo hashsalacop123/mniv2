@@ -11,17 +11,18 @@
                                   <th>Uploaded Date</th>
                                   <th>Group ID</th>
                                   <th>Number Of Call</th>
+                                   <th>File Name</th>
                                   <th>Reset Call Status</th>
                                 </tr>
                               </thead>
                                <tbody>
                           <?php 
                                  $dataUploaded = json_decode($response, true);
-                                  // echo "<pre>";
-                                  // print_r($dataUploaded);
-                  
-                                  $dataId = $dataUploaded['dataUploaded'];
-                                  foreach ($dataId as $key => $dataIds) {
+                                  $dataId = $dataUploaded;
+
+                                    if (is_array($dataId) || is_object($dataId))
+                                      {
+                                              foreach ($dataId as $key => $dataIds) {
 
                                     $callStatus = $dataIds['status_call'];
                                     $numberCalls = $dataIds['callPriority'];
@@ -46,6 +47,7 @@
                                         echo '<td>'.$dateuploaded->format('Y/m/d').'</td>';
                                         echo '<td class = "different"><input type = "text"  readonly="readonly" value = "'.rtrim($filesGroup,".csv").'" ></td>';
                                         echo '<td>'.$numberCalls.'</td>';
+                                        echo '<td>'.$dataIds['filesNamePath'].'</td>';
                                         echo '<td>';
 
                                           if($callStatus == '2') {
@@ -56,6 +58,9 @@
                                      
                                       echo "</tr>";
                                   }
+
+                                      }
+                                
                             ?>
                            </tbody>
                         </table>
@@ -245,18 +250,42 @@
                         </tr>
                       </thead>
                       <tbody>
-                          
-                            <?php 
-                      if ($err) {
-                          echo "cURL Error #:" . $err;
-                        } else {
-                           // $dataarray = json_decode($response, true);
-                         // $dataResponse = $response['nrMniData'];
-                            $dataarrayDats = json_decode($response, true);
-                            $dataarray = $dataarrayDats['nrMniData'];
+             <?php 
 
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                      CURLOPT_PORT => "8000",
+                      CURLOPT_URL => "http://172.16.11.120:8000/api/auth/duplicatestatus/",
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_ENCODING => "",
+                      CURLOPT_MAXREDIRS => 10,
+                      CURLOPT_TIMEOUT => 30,
+                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                      CURLOPT_CUSTOMREQUEST => "GET",
+                      CURLOPT_HTTPHEADER => array(
+                         "authorization: Bearer  ".$bearer."",
+                        "cache-control: no-cache",
+                        "postman-token: 33259bf3-35fe-d00f-b321-365ceebea27b"
+                      ),
+                    ));
+
+                    $nrMniData = curl_exec($curl);
+                    $err = curl_error($curl);
+
+                    curl_close($curl);
+
+                    if ($err) {
+                      echo "cURL Error #:" . $err;
+                    } else {
+                      
+                    }
+                            $dataarrayDats = json_decode($nrMniData, true);
+
+                   
                             $dataId = 0;
-                              foreach ($dataarray as $key => $dataarrays) 
+                            if (is_array($dataarrayDats) || is_object($dataarrayDats))
+                                { 
+                                            foreach ($dataarrayDats as $key => $dataarrays) 
                               {
                                 $datafilesusrl = $dataarrays['filesName'];
      
@@ -445,8 +474,11 @@
                     
                             $dataId++;
                               }
+
+                                }
+                    
                          
-                        } ?>
+                         ?>
                 
                        </tbody>
                      </table>
@@ -458,734 +490,741 @@
           echo "cURL Error #:" . $err;
         } else { 
             $dataValue = 0;
-      foreach ($dataarray as $key => $dataarrays) {
 
-           echo '<div style="display: none;" id="'.$dataarrays['id'].'" class = "wrapper-'.$dataarrays['id'].'">'; ?>
-               <table class="table">
-                  <tbody>
-                    <tr>
-                        <th>Group ID test</th>
-                          <td><?php
-                              $dataGroup =  $dataarrays['filesName'];
-                              echo rtrim($dataGroup,".csv"); ?></td>
+            if (is_array($dataarrayDats) || is_object($dataarrayDats))
+          {
+               foreach ($dataarrayDats as $key => $dataarrays) {
 
-                      </tr>
-                           <tr>
-                        <th>Agent Notes</th>
-                          <td><?php echo $dataarrays['agentsnotes']; ?></td>
-                      </tr>
-                     <tr>
-                        <th>Data Id</th>
-                          <td><?php echo $dataarrays['id']; ?></td>
-                      </tr>
-
-                    <tr>
-                        <th>compname</th>
-                          <td><input type="text" name="compname" readonly="readonly" class="form-control" value="<?php echo $dataarrays['compname']; ?>"/></td>
-                          <td>
-                          <input type="checkbox" name="compnamecheck" id="compnamecheck" class="compnamecheck"/>
-
-                          </td>
-                      </tr>
-
-                      <tr>
-                        <th>compname_d</th>
-                          <td><?php echo $dataarrays['compname_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>akadba</th>
-                          <td><?php echo $dataarrays['akadba']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>akadba_d</th>
-                          <td><?php echo $dataarrays['akadba_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>physaddr</th>
-                        <td><?php echo $dataarrays['physaddr']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>physaddr_d</th>
-                          <td><?php echo $dataarrays['physaddr_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>physcity</th>
-                          <td><?php echo $dataarrays['physcity']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>physcity_d</th>
-                          <td><?php echo $dataarrays['physcity_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>physstate</th>
-                        <td><?php echo $dataarrays['physstate']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>physstat_d</th>
-                          <td><?php echo $dataarrays['physstate_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>physzip</th>
-                          <td><?php echo $dataarrays['physzip']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>physzip_d</th>
-                          <td><?php echo $dataarrays['physzip_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>addrchgreason</th>
-                          <td><?php echo $dataarrays['addrchgreason']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>mailaddr</th>
-                          <td><?php echo $dataarrays['mailaddr']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>mailaddr_d</th>
-                        <td><?php echo $dataarrays['mailaddr_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>mailcity</th>
-                          <td><?php echo $dataarrays['mailcity']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>mailcity_d</th>
-                          <td><?php echo $dataarrays['mailcity_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>mailstate</th>
-                          <td><?php echo $dataarrays['mailstate']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>mailstat_d</th>
-                        <td><?php echo $dataarrays['mailstate_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>mailzip</th>
-                          <td><?php echo $dataarrays['mailzip']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>mailzip_d</th>
-                          <td><?php echo $dataarrays['mailzip_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>vnumber</th>
-                        <td><?php echo $dataarrays['vnumber']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>vnumber_d</th>
-                          <td><?php echo $dataarrays['vnumber_d']; ?></td>
-                      </tr>
-                       <tr>
-                        <th>altphone</th>
-                          <td><?php echo $dataarrays['altphone']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>altphone_d</th>
-                        <td><?php echo $dataarrays['altphone_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>fnumber</th>
-                          <td><?php echo $dataarrays['fnumber']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>fnumber_d</th>
-                        <td><?php echo $dataarrays['fnumber_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>nnumber</th>
-                          <td><?php echo $dataarrays['nnumber']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>nnumber_d</th>
-                          <td><?php echo $dataarrays['nnumber_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>web</th>
-                          <td><?php echo $dataarrays['web']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>web_d</th>
-                        <td><?php echo $dataarrays['web_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>email</th>
-                          <td><?php echo $dataarrays['email']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>email_d</th>
-                          <td><?php echo $dataarrays['email_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec1</th>
-                          <td><?php echo $dataarrays['exec1']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec1_d</th>
-                          <td><?php echo $dataarrays['exec1_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender1_d</th>
-                        <td><?php echo $dataarrays['gender1_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>officermail1</th>
-                          <td><?php echo $dataarrays['officermail1']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title1</th>
-                          <td><?php echo $dataarrays['title1']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title1_d</th>
-                          <td><?php echo $dataarrays['title1_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec2</th>
-                        <td><?php echo $dataarrays['exec2']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>exec2_d</th>
-                          <td><?php echo $dataarrays['exec2_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender2</th>
-                          <td><?php echo $dataarrays['gender2']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender2_d</th>
-                          <td><?php echo $dataarrays['gender2_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail2</th>
-                        <td><?php echo $dataarrays['officermail2']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>title2</th>
-                          <td><?php echo $dataarrays['title2']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title2_d</th>
-                          <td><?php echo $dataarrays['title2_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec3</th>
-                          <td><?php echo $dataarrays['exec3']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec3_d</th>
-                        <td><?php echo $dataarrays['exec3_d']; ?></td>
-                      </tr>
-                        <tr>
-                        <th>gender3</th>
-                          <td><?php echo $dataarrays['gender3']; ?></td>
-                      </tr>
-
-                      <tr>
-                        <th>gender3_d</th>
-                          <td><?php echo $dataarrays['gender3_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail3</th>
-                          <td><?php echo $dataarrays['officermail3']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title3</th>
-                          <td><?php echo $dataarrays['title3']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title3_d</th>
-                        <td><?php echo $dataarrays['title3_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>exec4</th>
-                          <td><?php echo $dataarrays['exec4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec4_d</th>
-                          <td><?php echo $dataarrays['exec4_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender4</th>
-                          <td><?php echo $dataarrays['gender4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender4_d</th>
-                        <td><?php echo $dataarrays['gender4_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>officermail4</th>
-                          <td><?php echo $dataarrays['officermail4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title4</th>
-                          <td><?php echo $dataarrays['title4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title4_d</th>
-                          <td><?php echo $dataarrays['title4_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec5</th>
-                        <td><?php echo $dataarrays['exec5']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>exec5_d</th>
-                          <td><?php echo $dataarrays['exec5_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender5</th>
-                          <td><?php echo $dataarrays['gender5']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender5_d</th>
-                          <td><?php echo $dataarrays['gender5_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail5</th>
-                        <td><?php echo $dataarrays['officermail5']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>title5</th>
-                          <td><?php echo $dataarrays['title5']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title5_d</th>
-                          <td><?php echo $dataarrays['title5_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec6</th>
-                          <td><?php echo $dataarrays['exec6']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec6_d</th>
-                        <td><?php echo $dataarrays['exec6_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>gender6</th>
-                          <td><?php echo $dataarrays['gender6']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender6_d</th>
-                          <td><?php echo $dataarrays['gender6_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail6</th>
-                          <td><?php echo $dataarrays['officermail6']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title6</th>
-                        <td><?php echo $dataarrays['title6']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>title6_d</th>
-                          <td><?php echo $dataarrays['title6_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec7</th>
-                          <td><?php echo $dataarrays['exec7']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec7_d</th>
-                          <td><?php echo $dataarrays['exec7_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender7</th>
-                        <td><?php echo $dataarrays['gender7']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>gender7_d</th>
-                          <td><?php echo $dataarrays['gender7_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail7</th>
-                          <td><?php echo $dataarrays['officermail7']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title7</th>
-                          <td><?php echo $dataarrays['title7']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title7_d</th>
-                        <td><?php echo $dataarrays['title7_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>exec8</th>
-                          <td><?php echo $dataarrays['exec8']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec8_d</th>
-                          <td><?php echo $dataarrays['exec8_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender8</th>
-                          <td><?php echo $dataarrays['gender8']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender8_d</th>
-                        <td><?php echo $dataarrays['gender8_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>officermail8</th>
-                          <td><?php echo $dataarrays['officermail8']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title8</th>
-                          <td><?php echo $dataarrays['title8']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title8_d</th>
-                          <td><?php echo $dataarrays['title8_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec9</th>
-                        <td><?php echo $dataarrays['exec9']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>exec9_d</th>
-                          <td><?php echo $dataarrays['exec9_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender9</th>
-                          <td><?php echo $dataarrays['gender9']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender9_d</th>
-                          <td><?php echo $dataarrays['gender9_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail9</th>
-                        <td><?php echo $dataarrays['officermail9']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>title9</th>
-                          <td><?php echo $dataarrays['title9']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title9_d</th>
-                          <td><?php echo $dataarrays['title9_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>exec10</th>
-                          <td><?php echo $dataarrays['exec10']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>gender10</th>
-                        <td><?php echo $dataarrays['gender10']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>gender10_d</th>
-                          <td><?php echo $dataarrays['gender10_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>officermail10</th>
-                          <td><?php echo $dataarrays['officermail10']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title10</th>
-                          <td><?php echo $dataarrays['title10']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>title10_d</th>
-                        <td><?php echo $dataarrays['title10_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>loccount</th>
-                          <td><?php echo $dataarrays['loccount']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>loccount_d</th>
-                          <td><?php echo $dataarrays['loccount_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>empchgreason</th>
-                          <td><?php echo $dataarrays['empchgreason']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>products</th>
-                        <td><?php echo $dataarrays['products']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>products_d</th>
-                          <td><?php echo $dataarrays['products_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>yearestab</th>
-                          <td><?php echo $dataarrays['yearestab']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>yearesta_d</th>
-                        <td><?php echo $dataarrays['yearestab_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>distribtyp</th>
-                          <td><?php echo $dataarrays['distribtyp']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>distribty_d</th>
-                          <td><?php echo $dataarrays['distribtyp_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>ownertype</th>
-                          <td><?php echo $dataarrays['ownertype']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>ownertyp_d</th>
-                        <td><?php echo $dataarrays['ownertype_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>sales</th>
-                          <td><?php echo $dataarrays['sales']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>sales_d</th>
-                          <td><?php echo $dataarrays['sales_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>squarefeet</th>
-                          <td><?php echo $dataarrays['squarefeet']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>squarefe_d</th>
-                        <td><?php echo $dataarrays['squarefeet_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>imports</th>
-                          <td><?php echo $dataarrays['imports']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>imports_d</th>
-                          <td><?php echo $dataarrays['imports_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>parentname</th>
-                          <td><?php echo $dataarrays['parentname']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>parentna_d</th>
-                          <td><?php echo $dataarrays['parentname_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>paddress</th>
-                          <td><?php echo $dataarrays['paddress']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>paddress_d</th>
-                          <td><?php echo $dataarrays['paddress_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>parentcity</th>
-                          <td><?php echo $dataarrays['parentcity']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>parentci_d</th>
-                        <td><?php echo $dataarrays['parentcity_d']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>parentstat</th>
-                          <td><?php echo $dataarrays['parentstat']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>parentst_d</th>
-                          <td><?php echo $dataarrays['parentstat_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>pzip5</th>
-                          <td><?php echo $dataarrays['pzip5']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>pzip5_d</th>
-                        <td><?php echo $dataarrays['pzip5_d']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>onumber</th>
-                          <td><?php echo $dataarrays['onumber']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>onumber_d</th>
-                        <td><?php echo $dataarrays['onumber_d']; ?></td>
-                      </tr>
-                       <tr>
-                        <th>advertiser</th>
-                          <td><?php echo $dataarrays['advertiser']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>companyid</th>
-                        <td><?php echo $dataarrays['companyid']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>contact</th>
-                          <td><?php echo $dataarrays['contact']; ?></td>
-                      </tr>
-                       <tr>
-                        <th>bookid</th>
-                        <td><?php echo $dataarrays['bookid']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>newinyear</th>
-                          <td><?php echo $dataarrays['newinyear']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>pdatetime</th>
-                          <td><?php echo $dataarrays['pdatetime']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>pcomments</th>
-                        <td><?php echo $dataarrays['pcomments']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>oagent</th>
-                          <td><?php echo $dataarrays['oagent']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>tagent</th>
-                          <td><?php echo $dataarrays['tagent']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>fagent</th>
-                        <td><?php echo $dataarrays['fagent']; ?></td>
-                      </tr>
+                 echo '<div style="display: none;" id="'.$dataarrays['id'].'" class = "wrapper-'.$dataarrays['id'].'">'; ?>
+                     <table class="table">
+                        <tbody>
                           <tr>
-                        <th>datetime4</th>
-                          <td><?php echo $dataarrays['datetime4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>comments4</th>
-                          <td><?php echo $dataarrays['comments4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>agent4</th>
-                          <td><?php echo $dataarrays['agent4']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>datetime5</th>
-                        <td><?php echo $dataarrays['datetime5']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>comments5</th>
-                          <td><?php echo $dataarrays['comments5']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>agent5</th>
-                          <td><?php echo $dataarrays['agent5']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>priority</th>
-                        <td><?php echo $dataarrays['priority']; ?></td>
-                      </tr>
-                       <tr>
-                        <th>header</th>
-                          <td><?php echo $dataarrays['header']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>primarysic</th>
-                          <td><?php echo $dataarrays['primarysic']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>sic2</th>
-                          <td><?php echo $dataarrays['sic2']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>datasource</th>
-                          <td><?php echo $dataarrays['datasource']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>odatetime</th>
-                          <td><?php echo $dataarrays['odatetime']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>ocommetns</th>
-                        <td><?php echo $dataarrays['ocommetns']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>tdatetime</th>
-                          <td><?php echo $dataarrays['tdatetime']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>tcomments</th>
-                          <td><?php echo $dataarrays['tcomments']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>fcomments</th>
-                          <td><?php echo $dataarrays['fcomments']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>fdatetime</th>
-                        <td><?php echo $dataarrays['fdatetime']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>operator</th>
-                          <td><?php echo $dataarrays['operator']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>fdisp</th>
-                          <td><?php echo $dataarrays['fdisp']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>confdate</th>
-                          <td><?php echo $dataarrays['confdate']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>listnum</th>
-                          <td><?php echo $dataarrays['listnum']; ?></td>
-                      </tr>
-                           <tr>
-                        <th>qeflag</th>
-                          <td> 
-                           <div class = "qadata">
-                          <ul class = "qa-data">
-                              <li>
-                                <?php $datavalue =  $dataarrays['qeflag']; 
-                                 $options = array('Draft','Pass','Kill');    ?>
-                                 <select id="qeflag" name="qeflag"  class="form-control qeflag">
-                                      <?php 
-                                           if($datavalue == 'Draft') {
-                                                echo '<option value = "Draft" selected="selected">Draft</option>';
-                                                echo '<option value = "Pass">Pass</option>';
-                                                echo '<option value = "Kill">Kill</option>';
-                                              }elseif($datavalue == 'Pass'){
-                                                echo '<option value = "Pass" selected="selected">Pass</option>';
-                                                echo '<option value = "Draft">Draft</option>';
-                                                echo '<option value = "Kill">Kill</option>';
-                                              }else {
-                                                echo '<option value = "Kill" selected="selected">Kill</option>';
-                                                echo '<option value = "Draft">Draft</option>';
-                                                echo '<option value = "Pass">Pass</option>';
-                                              } ?>
-                                  </select>
-                              </li>
-                              <li> <button id = "qeflagbtn"  data-idcurrent = "<?php echo $dataarrays['id']; ?>" class="form-control btn-success"> Save </button></li>
-                          </ul>
-                        </div>
-                        </td>
-                      </tr>
-                       
-                      <tr>
-                        <th>sysgencomments</th>
-                          <td><?php echo $dataarrays['sysgencomments']; ?></td>
-                      </tr>
-                      
-                           <tr>
-                        <th>addresserror</th>
-                          <td><?php echo $dataarrays['addresserror']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>dpvfootnote</th>
-                          <td><?php echo $dataarrays['dpvfootnote']; ?></td>
-                      </tr>
-                        <tr>
-                        <th>Number Of Call</th>
-                          <td><?php
-                                $number = $dataarrays['callcount'] + 1;
-                           echo $number; ?></td>
-                      </tr>
-                  
-                  </tbody>
-              </table>
-                        <?php   echo '</div>';
+                              <th>Group ID test</th>
+                                <td><?php
+                                    $dataGroup =  $dataarrays['filesName'];
+                                    echo rtrim($dataGroup,".csv"); ?></td>
 
-           $dataValue++;
-      }
+                            </tr>
+                                 <tr>
+                              <th>Agent Notes</th>
+                                <td><?php echo $dataarrays['agentsnotes']; ?></td>
+                            </tr>
+                           <tr>
+                              <th>Data Id</th>
+                                <td><?php echo $dataarrays['id']; ?></td>
+                            </tr>
+
+                          <tr>
+                              <th>compname</th>
+                                <td><input type="text" name="compname" readonly="readonly" class="form-control" value="<?php echo $dataarrays['compname']; ?>"/></td>
+                                <td>
+                                <input type="checkbox" name="compnamecheck" id="compnamecheck" class="compnamecheck"/>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                              <th>compname_d</th>
+                                <td><?php echo $dataarrays['compname_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>akadba</th>
+                                <td><?php echo $dataarrays['akadba']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>akadba_d</th>
+                                <td><?php echo $dataarrays['akadba_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>physaddr</th>
+                              <td><?php echo $dataarrays['physaddr']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>physaddr_d</th>
+                                <td><?php echo $dataarrays['physaddr_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>physcity</th>
+                                <td><?php echo $dataarrays['physcity']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>physcity_d</th>
+                                <td><?php echo $dataarrays['physcity_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>physstate</th>
+                              <td><?php echo $dataarrays['physstate']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>physstat_d</th>
+                                <td><?php echo $dataarrays['physstate_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>physzip</th>
+                                <td><?php echo $dataarrays['physzip']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>physzip_d</th>
+                                <td><?php echo $dataarrays['physzip_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>addrchgreason</th>
+                                <td><?php echo $dataarrays['addrchgreason']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>mailaddr</th>
+                                <td><?php echo $dataarrays['mailaddr']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>mailaddr_d</th>
+                              <td><?php echo $dataarrays['mailaddr_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>mailcity</th>
+                                <td><?php echo $dataarrays['mailcity']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>mailcity_d</th>
+                                <td><?php echo $dataarrays['mailcity_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>mailstate</th>
+                                <td><?php echo $dataarrays['mailstate']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>mailstat_d</th>
+                              <td><?php echo $dataarrays['mailstate_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>mailzip</th>
+                                <td><?php echo $dataarrays['mailzip']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>mailzip_d</th>
+                                <td><?php echo $dataarrays['mailzip_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>vnumber</th>
+                              <td><?php echo $dataarrays['vnumber']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>vnumber_d</th>
+                                <td><?php echo $dataarrays['vnumber_d']; ?></td>
+                            </tr>
+                             <tr>
+                              <th>altphone</th>
+                                <td><?php echo $dataarrays['altphone']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>altphone_d</th>
+                              <td><?php echo $dataarrays['altphone_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>fnumber</th>
+                                <td><?php echo $dataarrays['fnumber']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>fnumber_d</th>
+                              <td><?php echo $dataarrays['fnumber_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>nnumber</th>
+                                <td><?php echo $dataarrays['nnumber']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>nnumber_d</th>
+                                <td><?php echo $dataarrays['nnumber_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>web</th>
+                                <td><?php echo $dataarrays['web']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>web_d</th>
+                              <td><?php echo $dataarrays['web_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>email</th>
+                                <td><?php echo $dataarrays['email']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>email_d</th>
+                                <td><?php echo $dataarrays['email_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec1</th>
+                                <td><?php echo $dataarrays['exec1']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec1_d</th>
+                                <td><?php echo $dataarrays['exec1_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender1_d</th>
+                              <td><?php echo $dataarrays['gender1_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>officermail1</th>
+                                <td><?php echo $dataarrays['officermail1']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title1</th>
+                                <td><?php echo $dataarrays['title1']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title1_d</th>
+                                <td><?php echo $dataarrays['title1_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec2</th>
+                              <td><?php echo $dataarrays['exec2']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>exec2_d</th>
+                                <td><?php echo $dataarrays['exec2_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender2</th>
+                                <td><?php echo $dataarrays['gender2']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender2_d</th>
+                                <td><?php echo $dataarrays['gender2_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail2</th>
+                              <td><?php echo $dataarrays['officermail2']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>title2</th>
+                                <td><?php echo $dataarrays['title2']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title2_d</th>
+                                <td><?php echo $dataarrays['title2_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec3</th>
+                                <td><?php echo $dataarrays['exec3']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec3_d</th>
+                              <td><?php echo $dataarrays['exec3_d']; ?></td>
+                            </tr>
+                              <tr>
+                              <th>gender3</th>
+                                <td><?php echo $dataarrays['gender3']; ?></td>
+                            </tr>
+
+                            <tr>
+                              <th>gender3_d</th>
+                                <td><?php echo $dataarrays['gender3_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail3</th>
+                                <td><?php echo $dataarrays['officermail3']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title3</th>
+                                <td><?php echo $dataarrays['title3']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title3_d</th>
+                              <td><?php echo $dataarrays['title3_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>exec4</th>
+                                <td><?php echo $dataarrays['exec4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec4_d</th>
+                                <td><?php echo $dataarrays['exec4_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender4</th>
+                                <td><?php echo $dataarrays['gender4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender4_d</th>
+                              <td><?php echo $dataarrays['gender4_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>officermail4</th>
+                                <td><?php echo $dataarrays['officermail4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title4</th>
+                                <td><?php echo $dataarrays['title4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title4_d</th>
+                                <td><?php echo $dataarrays['title4_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec5</th>
+                              <td><?php echo $dataarrays['exec5']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>exec5_d</th>
+                                <td><?php echo $dataarrays['exec5_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender5</th>
+                                <td><?php echo $dataarrays['gender5']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender5_d</th>
+                                <td><?php echo $dataarrays['gender5_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail5</th>
+                              <td><?php echo $dataarrays['officermail5']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>title5</th>
+                                <td><?php echo $dataarrays['title5']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title5_d</th>
+                                <td><?php echo $dataarrays['title5_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec6</th>
+                                <td><?php echo $dataarrays['exec6']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec6_d</th>
+                              <td><?php echo $dataarrays['exec6_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>gender6</th>
+                                <td><?php echo $dataarrays['gender6']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender6_d</th>
+                                <td><?php echo $dataarrays['gender6_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail6</th>
+                                <td><?php echo $dataarrays['officermail6']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title6</th>
+                              <td><?php echo $dataarrays['title6']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>title6_d</th>
+                                <td><?php echo $dataarrays['title6_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec7</th>
+                                <td><?php echo $dataarrays['exec7']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec7_d</th>
+                                <td><?php echo $dataarrays['exec7_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender7</th>
+                              <td><?php echo $dataarrays['gender7']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>gender7_d</th>
+                                <td><?php echo $dataarrays['gender7_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail7</th>
+                                <td><?php echo $dataarrays['officermail7']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title7</th>
+                                <td><?php echo $dataarrays['title7']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title7_d</th>
+                              <td><?php echo $dataarrays['title7_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>exec8</th>
+                                <td><?php echo $dataarrays['exec8']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec8_d</th>
+                                <td><?php echo $dataarrays['exec8_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender8</th>
+                                <td><?php echo $dataarrays['gender8']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender8_d</th>
+                              <td><?php echo $dataarrays['gender8_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>officermail8</th>
+                                <td><?php echo $dataarrays['officermail8']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title8</th>
+                                <td><?php echo $dataarrays['title8']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title8_d</th>
+                                <td><?php echo $dataarrays['title8_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec9</th>
+                              <td><?php echo $dataarrays['exec9']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>exec9_d</th>
+                                <td><?php echo $dataarrays['exec9_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender9</th>
+                                <td><?php echo $dataarrays['gender9']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender9_d</th>
+                                <td><?php echo $dataarrays['gender9_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail9</th>
+                              <td><?php echo $dataarrays['officermail9']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>title9</th>
+                                <td><?php echo $dataarrays['title9']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title9_d</th>
+                                <td><?php echo $dataarrays['title9_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>exec10</th>
+                                <td><?php echo $dataarrays['exec10']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>gender10</th>
+                              <td><?php echo $dataarrays['gender10']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>gender10_d</th>
+                                <td><?php echo $dataarrays['gender10_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>officermail10</th>
+                                <td><?php echo $dataarrays['officermail10']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title10</th>
+                                <td><?php echo $dataarrays['title10']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>title10_d</th>
+                              <td><?php echo $dataarrays['title10_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>loccount</th>
+                                <td><?php echo $dataarrays['loccount']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>loccount_d</th>
+                                <td><?php echo $dataarrays['loccount_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>empchgreason</th>
+                                <td><?php echo $dataarrays['empchgreason']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>products</th>
+                              <td><?php echo $dataarrays['products']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>products_d</th>
+                                <td><?php echo $dataarrays['products_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>yearestab</th>
+                                <td><?php echo $dataarrays['yearestab']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>yearesta_d</th>
+                              <td><?php echo $dataarrays['yearestab_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>distribtyp</th>
+                                <td><?php echo $dataarrays['distribtyp']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>distribty_d</th>
+                                <td><?php echo $dataarrays['distribtyp_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>ownertype</th>
+                                <td><?php echo $dataarrays['ownertype']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>ownertyp_d</th>
+                              <td><?php echo $dataarrays['ownertype_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>sales</th>
+                                <td><?php echo $dataarrays['sales']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>sales_d</th>
+                                <td><?php echo $dataarrays['sales_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>squarefeet</th>
+                                <td><?php echo $dataarrays['squarefeet']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>squarefe_d</th>
+                              <td><?php echo $dataarrays['squarefeet_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>imports</th>
+                                <td><?php echo $dataarrays['imports']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>imports_d</th>
+                                <td><?php echo $dataarrays['imports_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>parentname</th>
+                                <td><?php echo $dataarrays['parentname']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>parentna_d</th>
+                                <td><?php echo $dataarrays['parentname_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>paddress</th>
+                                <td><?php echo $dataarrays['paddress']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>paddress_d</th>
+                                <td><?php echo $dataarrays['paddress_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>parentcity</th>
+                                <td><?php echo $dataarrays['parentcity']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>parentci_d</th>
+                              <td><?php echo $dataarrays['parentcity_d']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>parentstat</th>
+                                <td><?php echo $dataarrays['parentstat']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>parentst_d</th>
+                                <td><?php echo $dataarrays['parentstat_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>pzip5</th>
+                                <td><?php echo $dataarrays['pzip5']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>pzip5_d</th>
+                              <td><?php echo $dataarrays['pzip5_d']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>onumber</th>
+                                <td><?php echo $dataarrays['onumber']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>onumber_d</th>
+                              <td><?php echo $dataarrays['onumber_d']; ?></td>
+                            </tr>
+                             <tr>
+                              <th>advertiser</th>
+                                <td><?php echo $dataarrays['advertiser']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>companyid</th>
+                              <td><?php echo $dataarrays['companyid']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>contact</th>
+                                <td><?php echo $dataarrays['contact']; ?></td>
+                            </tr>
+                             <tr>
+                              <th>bookid</th>
+                              <td><?php echo $dataarrays['bookid']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>newinyear</th>
+                                <td><?php echo $dataarrays['newinyear']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>pdatetime</th>
+                                <td><?php echo $dataarrays['pdatetime']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>pcomments</th>
+                              <td><?php echo $dataarrays['pcomments']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>oagent</th>
+                                <td><?php echo $dataarrays['oagent']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>tagent</th>
+                                <td><?php echo $dataarrays['tagent']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>fagent</th>
+                              <td><?php echo $dataarrays['fagent']; ?></td>
+                            </tr>
+                                <tr>
+                              <th>datetime4</th>
+                                <td><?php echo $dataarrays['datetime4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>comments4</th>
+                                <td><?php echo $dataarrays['comments4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>agent4</th>
+                                <td><?php echo $dataarrays['agent4']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>datetime5</th>
+                              <td><?php echo $dataarrays['datetime5']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>comments5</th>
+                                <td><?php echo $dataarrays['comments5']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>agent5</th>
+                                <td><?php echo $dataarrays['agent5']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>priority</th>
+                              <td><?php echo $dataarrays['priority']; ?></td>
+                            </tr>
+                             <tr>
+                              <th>header</th>
+                                <td><?php echo $dataarrays['header']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>primarysic</th>
+                                <td><?php echo $dataarrays['primarysic']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>sic2</th>
+                                <td><?php echo $dataarrays['sic2']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>datasource</th>
+                                <td><?php echo $dataarrays['datasource']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>odatetime</th>
+                                <td><?php echo $dataarrays['odatetime']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>ocommetns</th>
+                              <td><?php echo $dataarrays['ocommetns']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>tdatetime</th>
+                                <td><?php echo $dataarrays['tdatetime']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>tcomments</th>
+                                <td><?php echo $dataarrays['tcomments']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>fcomments</th>
+                                <td><?php echo $dataarrays['fcomments']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>fdatetime</th>
+                              <td><?php echo $dataarrays['fdatetime']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>operator</th>
+                                <td><?php echo $dataarrays['operator']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>fdisp</th>
+                                <td><?php echo $dataarrays['fdisp']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>confdate</th>
+                                <td><?php echo $dataarrays['confdate']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>listnum</th>
+                                <td><?php echo $dataarrays['listnum']; ?></td>
+                            </tr>
+                                 <tr>
+                              <th>qeflag</th>
+                                <td> 
+                                 <div class = "qadata">
+                                <ul class = "qa-data">
+                                    <li>
+                                      <?php $datavalue =  $dataarrays['qeflag']; 
+                                       $options = array('Draft','Pass','Kill');    ?>
+                                       <select id="qeflag" name="qeflag"  class="form-control qeflag">
+                                            <?php 
+                                                 if($datavalue == 'Draft') {
+                                                      echo '<option value = "Draft" selected="selected">Draft</option>';
+                                                      echo '<option value = "Pass">Pass</option>';
+                                                      echo '<option value = "Kill">Kill</option>';
+                                                    }elseif($datavalue == 'Pass'){
+                                                      echo '<option value = "Pass" selected="selected">Pass</option>';
+                                                      echo '<option value = "Draft">Draft</option>';
+                                                      echo '<option value = "Kill">Kill</option>';
+                                                    }else {
+                                                      echo '<option value = "Kill" selected="selected">Kill</option>';
+                                                      echo '<option value = "Draft">Draft</option>';
+                                                      echo '<option value = "Pass">Pass</option>';
+                                                    } ?>
+                                        </select>
+                                    </li>
+                                    <li> <button id = "qeflagbtn"  data-idcurrent = "<?php echo $dataarrays['id']; ?>" class="form-control btn-success"> Save </button></li>
+                                </ul>
+                              </div>
+                              </td>
+                            </tr>
+                             
+                            <tr>
+                              <th>sysgencomments</th>
+                                <td><?php echo $dataarrays['sysgencomments']; ?></td>
+                            </tr>
+                            
+                                 <tr>
+                              <th>addresserror</th>
+                                <td><?php echo $dataarrays['addresserror']; ?></td>
+                            </tr>
+                            <tr>
+                              <th>dpvfootnote</th>
+                                <td><?php echo $dataarrays['dpvfootnote']; ?></td>
+                            </tr>
+                              <tr>
+                              <th>Number Of Call</th>
+                                <td><?php
+                                      $number = $dataarrays['callcount'] + 1;
+                                 echo $number; ?></td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                              <?php   echo '</div>';
+
+                 $dataValue++;
+            }
+            
+          }
+
+          
   
         }
   ?>

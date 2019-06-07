@@ -8,7 +8,7 @@
           curl_setopt_array($curl, array(
             CURLOPT_PORT => "8000",
             //CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/historycalls",
-            CURLOPT_URL => "http://127.0.0.1:8000/api/auth/historycalls",
+            CURLOPT_URL => "http://172.16.11.120:8000/api/auth/historycalls",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -19,13 +19,11 @@
              "authorization: Bearer  ".$token.""
             ),
           ));
-
           $historydata = curl_exec($curl);
           $historydataerr = curl_error($curl);
           curl_close($curl);
 
-?>
-                                  
+?>          
                       <thead>
                           <tr>
                              <th>id</th>
@@ -215,200 +213,200 @@
                         } else {
                         
                            $history = json_decode($historydata, true);
-
-                              foreach ($history['nrmnidata'] as $key => $histories) 
+                             if (is_array($history) || is_object($history))
+                            {
+                                        foreach ($history as $key => $histories) 
                               {
 
                                 $dateformat  = new DateTime($histories['created_at']);
                                  $callstart = new DateTime($histories['callstart']);
-                               
-                                  // echo '<pre>';
-                                  // print_r($histories);
-
-                                echo '<tr>'; 
-                                   echo '<td>'.$histories['id'].'</td>';
-                                  echo '<td>'.$histories['user']['name'].'</td>';
-                                  echo '<td>'.$histories['compname'].'</td>';
-                                  echo '<td>'.$histories['compname_d'].'</td>';
-                                  echo '<td>'.$histories['akadba'].'</td>';
-                                  echo '<td>'.$histories['akadba_d'].'</td>';
-                                  echo '<td>'.$histories['physaddr'].'</td>';
-                                  echo '<td>'.$histories['physaddr_d'].'</td>';
-                                  echo '<td>'.$histories['physcity'].'</td>';
-                                  echo '<td>'.$histories['physcity_d'].'</td>';
-                                  echo '<td>'.$histories['physstate'].'</td>';
-                                  echo '<td>'.$histories['physstate_d'].'</td>';
-                                  echo '<td>'.$histories['physzip'].'</td>';
-                                  echo '<td>'.$histories['physzip_d'].'</td>';
-                                  echo '<td>'.$histories['addrchgreason'].'</td>';
-                                  echo '<td>'.$histories['mailaddr'].'</td>';
-                                  echo '<td>'.$histories['mailaddr_d'].'</td>';
-                                  echo '<td>'.$histories['mailcity'].'</td>';
-                                  echo '<td>'.$histories['mailcity_d'].'</td>';
-                                  echo '<td>'.$histories['mailstate'].'</td>';
-                                  echo '<td>'.$histories['mailstate_d'].'</td>';
-                                  echo '<td>'.$histories['mailzip'].'</td>';
-                                  echo '<td>'.$histories['mailzip_d'].'</td>';
-                                  echo '<td>'.$histories['vnumber'].'</td>';
-                                  echo '<td>'.$histories['vnumber_d'].'</td>';
-                                  echo '<td>'.$histories['altphone'].'</td>';
-                                  echo '<td>'.$histories['altphone_d'].'</td>';
-                                  echo '<td>'.$histories['fnumber'].'</td>';
-                                  echo '<td>'.$histories['fnumber_d'].'</td>';
-                                  echo '<td>'.$histories['nnumber'].'</td>';
-                                  echo '<td>'.$histories['nnumber_d'].'</td>';
-                                  echo '<td>'.$histories['web'].'</td>';
-                                  echo '<td>'.$histories['web_d'].'</td>';
-                                  echo '<td>'.$histories['email'].'</td>';
-                                  echo '<td>'.$histories['email_d'].'</td>';
-                                  echo '<td>'.$histories['exec1'].'</td>';
-                                  echo '<td>'.$histories['exec1_d'].'</td>';
-                                  echo '<td>'.$histories['gender1'].'</td>';
-                                  echo '<td>'.$histories['gender1_d'].'</td>';
-                                  echo '<td>'.$histories['officermail1'].'</td>';
-                                  echo '<td>'.$histories['title1'].'</td>';
-                                  echo '<td>'.$histories['title1_d'].'</td>';
-                                  echo '<td>'.$histories['exec2'].'</td>';
-                                  echo '<td>'.$histories['exec2_d'].'</td>';
-                                  echo '<td>'.$histories['gender2'].'</td>';
-                                  echo '<td>'.$histories['gender2_d'].'</td>';
-                                  echo '<td>'.$histories['officermail2'].'</td>';
-                                  echo '<td>'.$histories['title2'].'</td>';
-                                  echo '<td>'.$histories['title2_d'].'</td>'; 
-                                  echo '<td>'.$histories['exec3'].'</td>';
-                                  echo '<td>'.$histories['exec3_d'].'</td>';
-                                  echo '<td>'.$histories['gender3'].'</td>';
-                                  echo '<td>'.$histories['gender3_d'].'</td>';
-                                  echo '<td>'.$histories['officermail3'].'</td>';
-                                  echo '<td>'.$histories['title3'].'</td>';
-                                  echo '<td>'.$histories['title3_d'].'</td>';
-                                  echo '<td>'.$histories['exec4'].'</td>';
-                                  echo '<td>'.$histories['exec4_d'].'</td>';
-                                  echo '<td>'.$histories['gender4'].'</td>';
-                                  echo '<td>'.$histories['gender4_d'].'</td>';
-                                  echo '<td>'.$histories['officermail4'].'</td>';
-                                  echo '<td>'.$histories['title4'].'</td>';
-                                  echo '<td>'.$histories['title4_d'].'</td>';
-                                  echo '<td>'.$histories['exec5'].'</td>';
-                                  echo '<td>'.$histories['exec5_d'].'</td>';
-                                  echo '<td>'.$histories['gender5'].'</td>';
-                                  echo '<td>'.$histories['gender5_d'].'</td>';
-                                  echo '<td>'.$histories['officermail5'].'</td>';
-                                  echo '<td>'.$histories['title5'].'</td>';
-                                  echo '<td>'.$histories['title5_d'].'</td>';
-                                  echo '<td>'.$histories['exec6'].'</td>';
-                                  echo '<td>'.$histories['exec6_d'].'</td>';
-                                  echo '<td>'.$histories['gender6'].'</td>';
-                                  echo '<td>'.$histories['gender6_d'].'</td>';
-                                  echo '<td>'.$histories['officermail6'].'</td>';
-                                  echo '<td>'.$histories['title6'].'</td>';
-                                  echo '<td>'.$histories['title6_d'].'</td>';
-                                  echo '<td>'.$histories['exec7'].'</td>';
-                                  echo '<td>'.$histories['exec7_d'].'</td>';
-                                  echo '<td>'.$histories['gender7'].'</td>';
-                                  echo '<td>'.$histories['gender7_d'].'</td>';
-                                  echo '<td>'.$histories['officermail7'].'</td>';
-                                  echo '<td>'.$histories['title7'].'</td>';
-                                  echo '<td>'.$histories['title7_d'].'</td>';
-                                  echo '<td>'.$histories['exec8'].'</td>';
-                                  echo '<td>'.$histories['exec8_d'].'</td>';
-                                  echo '<td>'.$histories['gender8'].'</td>';
-                                  echo '<td>'.$histories['gender8_d'].'</td>';
-                                  echo '<td>'.$histories['officermail8'].'</td>';
-                                  echo '<td>'.$histories['title8'].'</td>';
-                                  echo '<td>'.$histories['title8_d'].'</td>';
-                                  echo '<td>'.$histories['exec9'].'</td>';
-                                  echo '<td>'.$histories['exec9_d'].'</td>';
-                                  echo '<td>'.$histories['gender9'].'</td>';
-                                  echo '<td>'.$histories['gender9_d'].'</td>';
-                                  echo '<td>'.$histories['officermail9'].'</td>';
-                                  echo '<td>'.$histories['title9'].'</td>';
-                                  echo '<td>'.$histories['title9_d'].'</td>';
-                                  echo '<td>'.$histories['exec10'].'</td>';
-                                  echo '<td>'.$histories['exec10_d'].'</td>';
-                                  echo '<td>'.$histories['gender10'].'</td>';
-                                  echo '<td>'.$histories['gender10_d'].'</td>';
-                                  echo '<td>'.$histories['officermail10'].'</td>';
-                                  echo '<td>'.$histories['title10'].'</td>';
-                                  echo '<td>'.$histories['title10_d'].'</td>';
-                                  echo '<td>'.$histories['loccount'].'</td>';
-                                  echo '<td>'.$histories['loccount_d'].'</td>';
-                                  echo '<td>'.$histories['empchgreason'].'</td>';
-                                  echo '<td>'.$histories['products'].'</td>';
-                                  echo '<td>'.$histories['products_d'].'</td>';
-                                  echo '<td>'.$histories['yearestab'].'</td>';
-                                  echo '<td>'.$histories['yearestab_d'].'</td>';
-                                  echo '<td>'.$histories['distribtyp'].'</td>';
-                                  echo '<td>'.$histories['distribtyp_d'].'</td>';
-                                  echo '<td>'.$histories['ownertype'].'</td>';
-                                  echo '<td>'.$histories['ownertype_d'].'</td>';
-                                  echo '<td>'.$histories['sales'].'</td>';
-                                  echo '<td>'.$histories['sales_d'].'</td>';
-                                  echo '<td>'.$histories['squarefeet'].'</td>';
-                                  echo '<td>'.$histories['squarefeet_d'].'</td>';
-                                  echo '<td>'.$histories['imports'].'</td>';
-                                  echo '<td>'.$histories['imports_d'].'</td>';
-                                  echo '<td>'.$histories['parentname'].'</td>';
-                                  echo '<td>'.$histories['parentname_d'].'</td>';
-                                  echo '<td>'.$histories['paddress'].'</td>';
-                                  echo '<td>'.$histories['paddress_d'].'</td>';
-                                  echo '<td>'.$histories['parentcity'].'</td>';
-                                  echo '<td>'.$histories['parentcity_d'].'</td>';
-                                  echo '<td>'.$histories['parentstat'].'</td>';
-                                  echo '<td>'.$histories['parentstat_d'].'</td>';
-                                  echo '<td>'.$histories['pzip5'].'</td>';
-                                  echo '<td>'.$histories['pzip5_d'].'</td>';
-                                  echo '<td>'.$histories['onumber'].'</td>';
-                                  echo '<td>'.$histories['onumber_d'].'</td>';
-                                  echo '<td>'.$histories['advertiser'].'</td>'; 
-                                  echo '<td>'.$histories['companyid'].'</td>';
-                                  echo '<td>'.$histories['contact'].'</td>';
-                                  echo '<td>'.$histories['bookid'].'</td>';
-                                  echo '<td>'.$histories['newinyear'].'</td>';
-                                  echo '<td>'.$histories['pdatetime'].'</td>';
-                                  echo '<td>'.$histories['pcomments'].'</td>';
-                                  echo '<td>'.$histories['oagent'].'</td>';
-                                  echo '<td>'.$histories['tagent'].'</td>';
-                                  echo '<td>'.$histories['fagent'].'</td>';
-                                  echo '<td>'.$histories['datetime4'].'</td>';
-                                  echo '<td>'.$histories['comments4'].'</td>';
-                                  echo '<td>'.$histories['agent4'].'</td>';
-                                  echo '<td>'.$histories['datetime5'].'</td>';
-                                  echo '<td>'.$histories['comments5'].'</td>';
-                                  echo '<td>'.$histories['agent5'].'</td>';
-                                  echo '<td>'.$histories['priority'].'</td>';
-                                  echo '<td>'.$histories['header'].'</td>'; 
-                                  echo '<td>'.$histories['primarysic'].'</td>';
-                                  echo '<td>'.$histories['sic2'].'</td>';
-                                  echo '<td>'.$histories['datasource'].'</td>';
-                                  echo '<td>'.$histories['odatetime'].'</td>';
-                                  echo '<td>'.$histories['ocommetns'].'</td>';
-                                  echo '<td>'.$histories['tdatetime'].'</td>';
-                                  echo '<td>'.$histories['tcomments'].'</td>';
-                                  echo '<td>'.$histories['fcomments'].'</td>';
-                                  echo '<td>'.$histories['fdatetime'].'</td>';
-                                  echo '<td>'.$histories['operator'].'</td>';
-                                  echo '<td>'.$histories['fdisp'].'</td>';
-                                  echo '<td>'.$histories['confdate'].'</td>';
-                                  echo '<td>'.$histories['listnum'].'</td>';
-                                  echo '<td>'.$histories['qeflag'].'</td>';
-                                  echo '<td>'.$histories['sysgencomments'].'</td>';
-                                  echo '<td>'.$histories['addresserror'].'</td>';
-                                  echo '<td>'.$histories['dpvfootnote'].'</td>';
-                                  echo '<td>'.$callstart->format('Y-m-d h:i:s').'</td>';
-                                  echo '<td>'.$dateformat->format('Y-m-d h:i:s').'</td>';
-                                   echo '<td>'.$histories['id'].'</td>';
-                                  echo '<td>'.$dateformat->format('Y/m/d').'</td>';
-                                  echo '<td>'.rtrim($datafilesusrl,".csv").'</td>';
-                                   echo '<td>'.$histories['agentsnotes'].'</td>';
-                                   echo '<td>'.$histories['diliver_status'].'</td>';
-                                   echo '<td>'.$histories['nr_mni_data_id'].'</td>';
-
-                              echo '</tr>';
-
-                    
   
-                              }
+                                  echo '<tr>'; 
+                                     echo '<td>'.$histories['id'].'</td>';
+                                    echo '<td>'.$histories['user']['name'].'</td>';
+                                    echo '<td>'.$histories['compname'].'</td>';
+                                    echo '<td>'.$histories['compname_d'].'</td>';
+                                    echo '<td>'.$histories['akadba'].'</td>';
+                                    echo '<td>'.$histories['akadba_d'].'</td>';
+                                    echo '<td>'.$histories['physaddr'].'</td>';
+                                    echo '<td>'.$histories['physaddr_d'].'</td>';
+                                    echo '<td>'.$histories['physcity'].'</td>';
+                                    echo '<td>'.$histories['physcity_d'].'</td>';
+                                    echo '<td>'.$histories['physstate'].'</td>';
+                                    echo '<td>'.$histories['physstate_d'].'</td>';
+                                    echo '<td>'.$histories['physzip'].'</td>';
+                                    echo '<td>'.$histories['physzip_d'].'</td>';
+                                    echo '<td>'.$histories['addrchgreason'].'</td>';
+                                    echo '<td>'.$histories['mailaddr'].'</td>';
+                                    echo '<td>'.$histories['mailaddr_d'].'</td>';
+                                    echo '<td>'.$histories['mailcity'].'</td>';
+                                    echo '<td>'.$histories['mailcity_d'].'</td>';
+                                    echo '<td>'.$histories['mailstate'].'</td>';
+                                    echo '<td>'.$histories['mailstate_d'].'</td>';
+                                    echo '<td>'.$histories['mailzip'].'</td>';
+                                    echo '<td>'.$histories['mailzip_d'].'</td>';
+                                    echo '<td>'.$histories['vnumber'].'</td>';
+                                    echo '<td>'.$histories['vnumber_d'].'</td>';
+                                    echo '<td>'.$histories['altphone'].'</td>';
+                                    echo '<td>'.$histories['altphone_d'].'</td>';
+                                    echo '<td>'.$histories['fnumber'].'</td>';
+                                    echo '<td>'.$histories['fnumber_d'].'</td>';
+                                    echo '<td>'.$histories['nnumber'].'</td>';
+                                    echo '<td>'.$histories['nnumber_d'].'</td>';
+                                    echo '<td>'.$histories['web'].'</td>';
+                                    echo '<td>'.$histories['web_d'].'</td>';
+                                    echo '<td>'.$histories['email'].'</td>';
+                                    echo '<td>'.$histories['email_d'].'</td>';
+                                    echo '<td>'.$histories['exec1'].'</td>';
+                                    echo '<td>'.$histories['exec1_d'].'</td>';
+                                    echo '<td>'.$histories['gender1'].'</td>';
+                                    echo '<td>'.$histories['gender1_d'].'</td>';
+                                    echo '<td>'.$histories['officermail1'].'</td>';
+                                    echo '<td>'.$histories['title1'].'</td>';
+                                    echo '<td>'.$histories['title1_d'].'</td>';
+                                    echo '<td>'.$histories['exec2'].'</td>';
+                                    echo '<td>'.$histories['exec2_d'].'</td>';
+                                    echo '<td>'.$histories['gender2'].'</td>';
+                                    echo '<td>'.$histories['gender2_d'].'</td>';
+                                    echo '<td>'.$histories['officermail2'].'</td>';
+                                    echo '<td>'.$histories['title2'].'</td>';
+                                    echo '<td>'.$histories['title2_d'].'</td>'; 
+                                    echo '<td>'.$histories['exec3'].'</td>';
+                                    echo '<td>'.$histories['exec3_d'].'</td>';
+                                    echo '<td>'.$histories['gender3'].'</td>';
+                                    echo '<td>'.$histories['gender3_d'].'</td>';
+                                    echo '<td>'.$histories['officermail3'].'</td>';
+                                    echo '<td>'.$histories['title3'].'</td>';
+                                    echo '<td>'.$histories['title3_d'].'</td>';
+                                    echo '<td>'.$histories['exec4'].'</td>';
+                                    echo '<td>'.$histories['exec4_d'].'</td>';
+                                    echo '<td>'.$histories['gender4'].'</td>';
+                                    echo '<td>'.$histories['gender4_d'].'</td>';
+                                    echo '<td>'.$histories['officermail4'].'</td>';
+                                    echo '<td>'.$histories['title4'].'</td>';
+                                    echo '<td>'.$histories['title4_d'].'</td>';
+                                    echo '<td>'.$histories['exec5'].'</td>';
+                                    echo '<td>'.$histories['exec5_d'].'</td>';
+                                    echo '<td>'.$histories['gender5'].'</td>';
+                                    echo '<td>'.$histories['gender5_d'].'</td>';
+                                    echo '<td>'.$histories['officermail5'].'</td>';
+                                    echo '<td>'.$histories['title5'].'</td>';
+                                    echo '<td>'.$histories['title5_d'].'</td>';
+                                    echo '<td>'.$histories['exec6'].'</td>';
+                                    echo '<td>'.$histories['exec6_d'].'</td>';
+                                    echo '<td>'.$histories['gender6'].'</td>';
+                                    echo '<td>'.$histories['gender6_d'].'</td>';
+                                    echo '<td>'.$histories['officermail6'].'</td>';
+                                    echo '<td>'.$histories['title6'].'</td>';
+                                    echo '<td>'.$histories['title6_d'].'</td>';
+                                    echo '<td>'.$histories['exec7'].'</td>';
+                                    echo '<td>'.$histories['exec7_d'].'</td>';
+                                    echo '<td>'.$histories['gender7'].'</td>';
+                                    echo '<td>'.$histories['gender7_d'].'</td>';
+                                    echo '<td>'.$histories['officermail7'].'</td>';
+                                    echo '<td>'.$histories['title7'].'</td>';
+                                    echo '<td>'.$histories['title7_d'].'</td>';
+                                    echo '<td>'.$histories['exec8'].'</td>';
+                                    echo '<td>'.$histories['exec8_d'].'</td>';
+                                    echo '<td>'.$histories['gender8'].'</td>';
+                                    echo '<td>'.$histories['gender8_d'].'</td>';
+                                    echo '<td>'.$histories['officermail8'].'</td>';
+                                    echo '<td>'.$histories['title8'].'</td>';
+                                    echo '<td>'.$histories['title8_d'].'</td>';
+                                    echo '<td>'.$histories['exec9'].'</td>';
+                                    echo '<td>'.$histories['exec9_d'].'</td>';
+                                    echo '<td>'.$histories['gender9'].'</td>';
+                                    echo '<td>'.$histories['gender9_d'].'</td>';
+                                    echo '<td>'.$histories['officermail9'].'</td>';
+                                    echo '<td>'.$histories['title9'].'</td>';
+                                    echo '<td>'.$histories['title9_d'].'</td>';
+                                    echo '<td>'.$histories['exec10'].'</td>';
+                                    echo '<td>'.$histories['exec10_d'].'</td>';
+                                    echo '<td>'.$histories['gender10'].'</td>';
+                                    echo '<td>'.$histories['gender10_d'].'</td>';
+                                    echo '<td>'.$histories['officermail10'].'</td>';
+                                    echo '<td>'.$histories['title10'].'</td>';
+                                    echo '<td>'.$histories['title10_d'].'</td>';
+                                    echo '<td>'.$histories['loccount'].'</td>';
+                                    echo '<td>'.$histories['loccount_d'].'</td>';
+                                    echo '<td>'.$histories['empchgreason'].'</td>';
+                                    echo '<td>'.$histories['products'].'</td>';
+                                    echo '<td>'.$histories['products_d'].'</td>';
+                                    echo '<td>'.$histories['yearestab'].'</td>';
+                                    echo '<td>'.$histories['yearestab_d'].'</td>';
+                                    echo '<td>'.$histories['distribtyp'].'</td>';
+                                    echo '<td>'.$histories['distribtyp_d'].'</td>';
+                                    echo '<td>'.$histories['ownertype'].'</td>';
+                                    echo '<td>'.$histories['ownertype_d'].'</td>';
+                                    echo '<td>'.$histories['sales'].'</td>';
+                                    echo '<td>'.$histories['sales_d'].'</td>';
+                                    echo '<td>'.$histories['squarefeet'].'</td>';
+                                    echo '<td>'.$histories['squarefeet_d'].'</td>';
+                                    echo '<td>'.$histories['imports'].'</td>';
+                                    echo '<td>'.$histories['imports_d'].'</td>';
+                                    echo '<td>'.$histories['parentname'].'</td>';
+                                    echo '<td>'.$histories['parentname_d'].'</td>';
+                                    echo '<td>'.$histories['paddress'].'</td>';
+                                    echo '<td>'.$histories['paddress_d'].'</td>';
+                                    echo '<td>'.$histories['parentcity'].'</td>';
+                                    echo '<td>'.$histories['parentcity_d'].'</td>';
+                                    echo '<td>'.$histories['parentstat'].'</td>';
+                                    echo '<td>'.$histories['parentstat_d'].'</td>';
+                                    echo '<td>'.$histories['pzip5'].'</td>';
+                                    echo '<td>'.$histories['pzip5_d'].'</td>';
+                                    echo '<td>'.$histories['onumber'].'</td>';
+                                    echo '<td>'.$histories['onumber_d'].'</td>';
+                                    echo '<td>'.$histories['advertiser'].'</td>'; 
+                                    echo '<td>'.$histories['companyid'].'</td>';
+                                    echo '<td>'.$histories['contact'].'</td>';
+                                    echo '<td>'.$histories['bookid'].'</td>';
+                                    echo '<td>'.$histories['newinyear'].'</td>';
+                                    echo '<td>'.$histories['pdatetime'].'</td>';
+                                    echo '<td>'.$histories['pcomments'].'</td>';
+                                    echo '<td>'.$histories['oagent'].'</td>';
+                                    echo '<td>'.$histories['tagent'].'</td>';
+                                    echo '<td>'.$histories['fagent'].'</td>';
+                                    echo '<td>'.$histories['datetime4'].'</td>';
+                                    echo '<td>'.$histories['comments4'].'</td>';
+                                    echo '<td>'.$histories['agent4'].'</td>';
+                                    echo '<td>'.$histories['datetime5'].'</td>';
+                                    echo '<td>'.$histories['comments5'].'</td>';
+                                    echo '<td>'.$histories['agent5'].'</td>';
+                                    echo '<td>'.$histories['priority'].'</td>';
+                                    echo '<td>'.$histories['header'].'</td>'; 
+                                    echo '<td>'.$histories['primarysic'].'</td>';
+                                    echo '<td>'.$histories['sic2'].'</td>';
+                                    echo '<td>'.$histories['datasource'].'</td>';
+                                    echo '<td>'.$histories['odatetime'].'</td>';
+                                    echo '<td>'.$histories['ocommetns'].'</td>';
+                                    echo '<td>'.$histories['tdatetime'].'</td>';
+                                    echo '<td>'.$histories['tcomments'].'</td>';
+                                    echo '<td>'.$histories['fcomments'].'</td>';
+                                    echo '<td>'.$histories['fdatetime'].'</td>';
+                                    echo '<td>'.$histories['operator'].'</td>';
+                                    echo '<td>'.$histories['fdisp'].'</td>';
+                                    echo '<td>'.$histories['confdate'].'</td>';
+                                    echo '<td>'.$histories['listnum'].'</td>';
+                                    echo '<td>'.$histories['qeflag'].'</td>';
+                                    echo '<td>'.$histories['sysgencomments'].'</td>';
+                                    echo '<td>'.$histories['addresserror'].'</td>';
+                                    echo '<td>'.$histories['dpvfootnote'].'</td>';
+                                    echo '<td>'.$callstart->format('Y-m-d h:i:s').'</td>';
+                                    echo '<td>'.$dateformat->format('Y-m-d h:i:s').'</td>';
+                                     echo '<td>'.$histories['id'].'</td>';
+                                    echo '<td>'.$dateformat->format('Y/m/d').'</td>';
+                                    echo '<td>'.rtrim($datafilesusrl,".csv").'</td>';
+                                     echo '<td>'.$histories['agentsnotes'].'</td>';
+                                     echo '<td>'.$histories['diliver_status'].'</td>';
+                                     echo '<td>'.$histories['nr_mni_data_id'].'</td>';
+
+                                echo '</tr>';
+
+                      
+    
+                                }
+                            }
+                    
                          
                         } ?>
                 

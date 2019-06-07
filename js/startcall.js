@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/userinfo",
-            "url": "http://127.0.0.1:8000/api/auth/userinfo",
+            "url": "http://172.16.11.120:8000/api/auth/userinfo",
             "method": "GET",
             "headers": {
                 "authorization": "Bearer  " + updateCookie,
@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/startcall",
-            "url": "http://127.0.0.1:8000/api/auth/startcall",
+            "url": "http://172.16.11.120:8000/api/auth/startcall",
             "method": "POST",
             "headers": {
                 "authorization": "Bearer  " + updateCookie,
@@ -80,14 +80,17 @@ jQuery(document).ready(function($) {
                               $(".submit").removeClass("hide-loading");
                               $(".done").removeClass("finish");
                               $(".failed").removeClass("finish");
+
                                 window.location.replace('/mniv2')
-                            }, 2000);
+                            }, 1000);
 
                     }
 
 
 
         });
+
+        return false;
     });
 
 

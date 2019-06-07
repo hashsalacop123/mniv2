@@ -34,7 +34,7 @@ $(document).on('click','.restore-btn', function(){
 											  "async": true,
 											  "crossDomain": true,
 											 // "url": "https://mniapi.openlookeasydata.com/api/auth/restoredelivered",
-											  "url": "http://127.0.0.1:8000/api/auth/restoredelivered/",
+											  "url": "http://172.16.11.120:8000/api/auth/restoredelivered/",
 											  "method": "PUT",
 											  "headers": {
 											     "authorization": "Bearer  " + updateCookie,
@@ -58,7 +58,7 @@ $(document).on('click','.restore-btn', function(){
 														})
 														setTimeout(function() { 
 																location.reload(true);	
-														},1000);
+														},2000);
 											});
                                 }
                             })
@@ -81,7 +81,7 @@ $(document).on('click','.restore-btn', function(){
 				  "async": true,
 				  "crossDomain": true,
 				  //"url": "https://mniapi.openlookeasydata.com/api/auth/qeflag/" + dataId,
-				  "url": "http://127.0.0.1:8000/api/auth/qeflag/" + dataId,
+				  "url": "http://172.16.11.120:8000/api/auth/qeflag/" + dataId,
 				  "method": "POST",
 				  "headers": {
 				   "authorization": "Bearer  " + updateCookie,

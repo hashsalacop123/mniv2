@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/nrdata/" + idcalling,
-            "url": "http://127.0.0.1:8000/api/auth/nrdata/" + idcalling,
+            "url": "http://172.16.11.120:8000/api/auth/nrdata/" + idcalling,
             "method": "GET",
             "headers": {
                 "authorization": "Bearer  " + cookiesTokken,

@@ -5,7 +5,7 @@
     curl_setopt_array($curl, array(
       CURLOPT_PORT => "8000",
       //CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/datadelivered",
-      CURLOPT_URL => "http://127.0.0.1:8000/api/auth/datadelivered/",
+      CURLOPT_URL => "http://172.16.11.120:8000/api/auth/datadelivered/",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
@@ -23,7 +23,8 @@
     $err = curl_error($curl);
 
     curl_close($curl);
-
+       $dataarray = json_decode($response, true);
+         
  
 
 ?>
@@ -217,18 +218,18 @@
 
                       if ($err) {
                           echo "cURL Error #:" . $err;
-                        } else {
+                        } else  {
                            // $dataarray = json_decode($response, true);
                          // $dataResponse = $response['nrMniData'];
-                            $dataarrayD = json_decode($response, true);
-                            // echo '<pre>';
-
-                            // var_dump($dataarrayD);
+                            $dataarray = json_decode($response, true);
+                      
 
                             // $dataarraydeliverd = $dataarrayD['nrMniData'];
-
-                              foreach ($dataarrayD as $key => $dataarraydeliverds) 
+                        if (is_array($dataarray) || is_object($dataarray))
+                          {
+                              foreach ($dataarray as $key => $dataarraydeliverds) 
                               {
+                            
                                 $datafilesusrl = $dataarraydeliverds['filesName'];
 
                                 $dateformat  = new DateTime($dataarraydeliverds['created_at']);
@@ -408,11 +409,13 @@
                                        echo '<td>'.rtrim($datafilesusrl,".csv").'</td>';
                                        echo '<td>'.$dataarraydeliverds['agentsnotes'].'</td>';
                                        echo '<td>'.$dataarraydeliverds['diliver_status'].'</td>';
-            echo '<td><button id = "'.$dataarraydeliverds['id'].'" data-nrId = "'.$dataarraydeliverds['nr_mni_data_id'].'" data-status = "pending" class = "btn btn btn-danger restore-btn"><i class="fa fa-trash-restore"></i> Restore</button></td>';
-                                  echo '</tr>';
+                                        echo '<td><button id = "'.$dataarraydeliverds['id'].'" data-nrId = "'.$dataarraydeliverds['nr_mni_data_id'].'" data-status = "pending" class = "btn btn btn-danger restore-btn"><i class="fa fa-trash-restore"></i> Restore</button></td>';
+                                                              echo '</tr>';
+                          }
+                            
                     
                           
-                              }
+                           }
                          
                         } ?>
                 

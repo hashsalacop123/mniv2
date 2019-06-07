@@ -32,6 +32,8 @@ jQuery(document).ready(function($) {
 				  }
 
 				})
+
+		return false;
 	});
 
 	$(document).on('click','#submit', function(){
@@ -49,7 +51,7 @@ jQuery(document).ready(function($) {
 				  "async": true,
 				  "crossDomain": true,
 				  //"url": "https://mniapi.openlookeasydata.com/api/auth/login",
-				  "url": "http://127.0.0.1:8000/api/auth/login",
+				  "url": "http://172.16.11.120:8000/api/auth/login",
 				  "method": "POST",
 				  "headers": {
 				    "content-type": "application/x-www-form-urlencoded",
@@ -88,6 +90,6 @@ jQuery(document).ready(function($) {
 		}
 
 			
-
+		return false;
 	});
 });

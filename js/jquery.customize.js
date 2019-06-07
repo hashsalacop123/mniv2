@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/statusupdate/" + idBtn,
-            "url": "http://127.0.0.1:8000/api/auth/statusupdate/" + idBtn,
+            "url": "http://172.16.11.120:8000/api/auth/statusupdate/" + idBtn,
             "method": "PUT",
             "headers": {
                 "authorization": "Bearer  " + updateCookie,
@@ -43,18 +43,22 @@ jQuery(document).ready(function($) {
             }, 2000);
         });
 
-    })
+        return false;
+    });
 
     $(document).on('click', '#upload-data', function() {
         $('#gif').css('visibility', 'visible');
         var dataUpload = $('#filesName').length ? $('#filesName')[0].files[0] : null;
+        var datafilename = $('#filesNamePath').val();
+
         var form = new FormData();
         form.append("filesName", dataUpload);
+        form.append("filesNamePath", datafilename);
         var settings = {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/importdata",
-            "url": "http://127.0.0.1:8000/api/auth/importdata",
+            "url": "http://172.16.11.120:8000/api/auth/importdata",
             "method": "POST",
             "headers": {
                 "authorization": "Bearer  " + updateCookie,
@@ -105,7 +109,17 @@ jQuery(document).ready(function($) {
                     }
                 })
                 $('#gif').css('visibility', 'hidden');
-            } else {
+                 setTimeout(function() {
+                    location.reload(true);
+                }, 2000);
+            } else if(response == 'Filename'){
+                    Swal.fire({
+                            type: 'error',
+                            title: 'File Path ',
+                            text: 'Please Dont Forget the first Fields'
+                })
+
+            }else {
                 var headers = response['Headers'];
                 var Invalid = response['Invalid'];
                 Swal.fire({
@@ -128,6 +142,7 @@ jQuery(document).ready(function($) {
 
         });
 
+        return false;
     });
 
 
@@ -160,7 +175,7 @@ jQuery(document).ready(function($) {
                 "async": true,
                 "crossDomain": true,
                 //"url": "https://mniapi.openlookeasydata.com/api/auth/signup",
-                "url": "http://127.0.0.1:8000/api/auth/signup",
+                "url": "http://172.16.11.120:8000/api/auth/signup",
                 "method": "POST",
                 "headers": {
                     "content-type": "application/x-www-form-urlencoded",
@@ -192,6 +207,7 @@ jQuery(document).ready(function($) {
             });
         }
 
+        return false;
     });
 
 

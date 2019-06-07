@@ -28,15 +28,15 @@ if(isset($_SESSION['loggedIN'])) {
                 <div class = "mni-system">
                          <div class = "container"> 
                               <div class = "row">
-                                <div class = "col-xs-12 col-sm-12 col-md-4 col-lg-4 mnisystem" >
+                                <div class = "col-xs-4 col-sm-4 col-md-4 col-lg-4 mnisystem" >
                                        <img src="img/mni-logo.png" alt="mni" class="img-fluid" />
                                  </div>
-                                 <div class = "col-xs-12 col-sm-12 col-md-4 number-call">
+                                 <div class = "col-xs-4 col-sm-4 col-md-4 number-call">
                                     <input id="testid"  class="form-control" value="" type="text">
                                     <div class="thenumber"></div>
 
                                  </div>
-                                   <div class = "col-xs-12 col-sm-12 col-md-4 col-lg-4 openlooklogo" >
+                                   <div class = "col-xs-4 col-sm-4 col-md-4 col-lg-4 openlooklogo" >
                                             <img src="img/open-look-logo-white.png" alt="logo" class = "imageRotateHorizontal img-fluid"/>
 
                                    </div>
@@ -47,7 +47,7 @@ if(isset($_SESSION['loggedIN'])) {
          <div class = "container data-container">
             <div class = "row">
                  <input type="hidden"  id="lead_id" data-aos="fade-up" value = "<?php echo $dataID; ?>" class="form-control" name="lead_id" placeholder="Search for ID"  aria-label="Data" aria-describedby="basic-addon1"/>
-                  <form id = "formleft" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <form id = "formleft" class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class = "row height-comments">
                       <div id = "iccomments1" class = "col-md-12" >
                         <div class = "row">
@@ -90,7 +90,7 @@ if(isset($_SESSION['loggedIN'])) {
              
                <!-- RIGHT DATA -->
              
-                  <form id = "dataform" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <form id = "dataform" class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="height-given">
                          <p class="agtnotes ">Agent Notes</p>
                             <textarea id="agentsnotes" class="agentsnotes"  name="agentsnotes"></textarea>
