@@ -371,7 +371,7 @@
                                        echo '<td>'.$dataarraydeliverds['fcomments'].'</td>';
                                        echo '<td>'.$dataarraydeliverds['fdatetime'].'</td>';
                                        echo '<td>'.$dataarraydeliverds['operator'].'</td>';
-                                       echo '<td>'.$dataarraydeliverds['fdisp'].'</td>';
+                                       echo '<td>\''.$dataarraydeliverds['fdisp'].'</td>';
                                        echo '<td>'.$dataarraydeliverds['confdate'].'</td>';
                                        echo '<td>'.$dataarraydeliverds['bookid'].'</td>';
                                        echo '<td>'.$dataarraydeliverds['newinyear'].'</td>';
