@@ -28,6 +28,8 @@ jQuery(document).ready(function($) {
 					Cookies.remove('tokken');
 					Cookies.remove('role');
 					Cookies.remove('startcall');
+					Cookies.remove('agentName');
+
 			
 				  }
 
@@ -68,10 +70,16 @@ jQuery(document).ready(function($) {
 					console.log(response);
 				  var tooken = response['access_token'];
 				  var role = response['role'];
+				  var agentName = response['user']['name'];
+
+				  // alert(agentName);
+
 				    $('#tokken').val(tooken);
 				   cookiesData =  Cookies.set('tokken', tooken,{ expires: 7});
 				   cookiesData =  Cookies.set('role', role,{ expires: 7});
-					window.location.href = "validation.php";
+				   nameData = Cookies.set('agentName', agentName, {expires:7});
+
+					 window.location.href = "validation.php";
 					
 				});
 	      		

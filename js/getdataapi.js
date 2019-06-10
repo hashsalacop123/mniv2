@@ -23,7 +23,9 @@ jQuery(document).ready(function($) {
             }
         }
         $.ajax(settings).done(function(response) {
-            
+
+            // console.log(response['countcall']);
+
             $('#testid').val(idcalling)
             $('#nrmnidataid').val(idcalling);
             let timerInterval
@@ -259,33 +261,39 @@ jQuery(document).ready(function($) {
 
                                 }
                             });
+                            
+                                       var countcall = response['countcall'];
+                                       console.log(response);
+                                       // var agentnameSave = response['user'];
+                                       countCall = Cookies.set('countcall', countcall, {expires:7});
                          
                             // AGENT NAME SAVE DATA
-                                  var agentName = $('#agentName').val(); 
-                            switch(datacounting)  {
-                                        case '0':
-                                                 $('.oagent').val(agentName);
-                                            break;
-                                        case '1':
-                                                 $('.tagent').val(agentName);
-                                            break;
-                                        case '2':
-                                                  $('.fagent').val(agentName);
-                                            break;
-                                        case '3':
-                                                $('.agent4').val(agentName);
-                                            break;
-                                        case '4':
-                                                 $('.agent5').val(agentName);
-                                            break;
-                                        case '5':
-                                                 $('.agent5').val(agentName);
-                                            break;
-                                        case '6':
-                                                 $('.agent5').val(agentName);
-                                            break;
+                            //       var agentName = $('#agentName').val(); 
+                            // switch(datacounting)  
+                            //     {
+                            //             case '0':
+                            //                      $('.oagent').val(agentName);
+                            //                 break;
+                            //             case '1':
+                            //                      $('.tagent').val(agentName);
+                            //                 break;
+                            //             case '2':
+                            //                       $('.fagent').val(agentName);
+                            //                 break;
+                            //             case '3':
+                            //                     $('.agent4').val(agentName);
+                            //                 break;
+                            //             case '4':
+                            //                      $('.agent5').val(agentName);
+                            //                 break;
+                            //             case '5':
+                            //                      $('.agent5').val(agentName);
+                            //                 break;
+                            //             case '6':
+                            //                      $('.agent5').val(agentName);
+                            //                 break;
 
-                                    }
+                            //         }
 
                         });
                              

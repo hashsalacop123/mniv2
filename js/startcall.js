@@ -62,7 +62,7 @@ jQuery(document).ready(function($) {
 
                     if(response == 'queCall') {
                             Swal.fire(
-                              'All data are already done.',
+                              'All Data has been completed.',
                               'Please inform your supervisor.'
                             )
                     }else{
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
                               $(".failed").removeClass("finish");
 
                                 window.location.replace('/mniv2')
-                            }, 1000);
+                            }, 3000);
 
                     }
 

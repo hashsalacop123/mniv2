@@ -357,11 +357,13 @@ jQuery(document).ready(function($) {
                     });
                       // console.log(response);
                     Cookies.remove('startcall');
+                    Cookies.remove('countcall');
                     Cookies.remove('callstartCaptured');
                          setTimeout(function() {
                              window.location.replace('startcall')
-                         },1000)
+                         },3000)
                     // location.reload('startcall');    
+
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === Swal.DismissReason.cancel
@@ -374,6 +376,8 @@ jQuery(document).ready(function($) {
                 }
             })
         }
+
+
 
         return false;
     });

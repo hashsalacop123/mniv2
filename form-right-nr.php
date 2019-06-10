@@ -954,8 +954,32 @@
       </div>
    </div>
 </div>
-
-
+      <!-- AGENT DATA NAME -->
+      <?php 
+         if (isset($_COOKIE['countcall'])) {
+            $agentname = $_COOKIE['agentName'];
+            $dataCount = $_COOKIE['countcall'];
+         switch ($dataCount) {
+             case "0":
+                 echo  "<input id='oagent' name='oagent'  class='form-control oagent ' value='".$agentname."' type='hidden'>";
+                 break;
+             case "1":
+                 echo "<input id='tagent' name='tagent'  class='form-control tagent'  value='".$agentname."' type='hidden'>";
+                 break;
+             case "2":
+                 echo "<input id='fagent' name='fagent'  class='form-control fagent'  value='".$agentname."' type='hidden'>";
+                 break;
+            case "3":
+                echo "<input id='fagent' name='fagent'  class='form-control fagent'  value='".$agentname."' type='hidden'>";
+               break;
+            case "4":
+                echo "<input id='fagent' name='fagent'  class='form-control fagent'  value='".$agentname."' type='hidden'>";
+                 break;
+            case "5":
+                echo "<input id='fagent' name='fagent'  class='form-control fagent'  value='".$agentname."' type='hidden'>";
+                break;
+         }  
+}?>
 <label class="col-sm-2 control-label "  >CONTACT</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
@@ -1121,11 +1145,11 @@
       <!-- <input id="compname" name="compname"  class="form-control"  value="" type="checkbox"> -->
    </div>
 </div>
-<label class="col-sm-2 control-label ">OAGENT</label>
+<label class="col-sm-2 control-label ">dataAgent</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
 
-      <input id="oagent" name="oagent"  class="form-control oagent"  value="" type="hidden" >
+      
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1136,7 +1160,7 @@
 <label class="col-sm-2 control-label "  >TAGENT</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="tagent" name="tagent"  class="form-control tagent"  value="test" type="hidden" >
+    
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1147,7 +1171,7 @@
 <label class="col-sm-2 control-label "  >FAGENT</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="fagent" name="fagent"  class="form-control fagent"  value="" type="hidden" >
+
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
