@@ -31,6 +31,7 @@ jQuery(document).ready(function($) {
 
         });
     $(document).on('click', '#startcall', function() {
+         $(".submit").css('display', 'none');
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -44,6 +45,8 @@ jQuery(document).ready(function($) {
             }
         }
         $.ajax(settings).done(function(response) {
+
+                console.log(response);
 
             var d = new Date();
             var month = d.getMonth() + 1;

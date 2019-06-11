@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+    
 
 
     var cookiesTokken = Cookies.get('tokken');
@@ -136,42 +137,12 @@ jQuery(document).ready(function($) {
                                 // console.log(datacounting);
                                 // DATA CONDITIONS OF SAVING THE COMMENTS  
                                                            
-                                var d = new Date();
-                                var month = d.getMonth() + 1;
-                                var day = d.getDate();
-                                var output = d.getFullYear() + '-' +
-                                    (('' + month).length < 2 ? '0' : '') + month + '-' +
-                                    (('' + day).length < 2 ? '0' : '') + day;
-
-                                switch (datacounting) {
-                                    case '0':
-                                        $('.odatetime').val(output);
-                                        break;
-                                    case '1':
-                                        $('.tdatetimes').val(output);
-                                        break;
-                                    case '2':
-                                        $('.fdatetimes').val(output);
-                                        break;
-                                    case '3':
-                                        $('.fdatetimes').val(output);
-                                        break;
-                                    case '4':
-                                        $('.fdatetimes').val(output);
-                                        break;
-                                    case '5':
-                                        $('.fdatetimes').val(output);
-                                        break;
-                                    case '6':
-                                        $('.fdatetimes').val(output);
-                                        break;
-                                }
                             });
                          
                             $.each(dataChecking, function(dataUpdated, valueUpdated) {
                                
                                 // console.log('#agentsnotes').val();
-                                var agentName = $('#agentName').val(); 
+                      
                                 if (dataUpdated.indexOf('_d') == -1) {
                                     var selectData = '.' + dataUpdated;
                                     $(selectData).val(valueUpdated);
@@ -260,40 +231,8 @@ jQuery(document).ready(function($) {
                                     }
 
                                 }
-                            });
-                            
-                                       var countcall = response['countcall'];
-                                       console.log(response);
-                                       // var agentnameSave = response['user'];
-                                       countCall = Cookies.set('countcall', countcall, {expires:7});
-                         
-                            // AGENT NAME SAVE DATA
-                            //       var agentName = $('#agentName').val(); 
-                            // switch(datacounting)  
-                            //     {
-                            //             case '0':
-                            //                      $('.oagent').val(agentName);
-                            //                 break;
-                            //             case '1':
-                            //                      $('.tagent').val(agentName);
-                            //                 break;
-                            //             case '2':
-                            //                       $('.fagent').val(agentName);
-                            //                 break;
-                            //             case '3':
-                            //                     $('.agent4').val(agentName);
-                            //                 break;
-                            //             case '4':
-                            //                      $('.agent5').val(agentName);
-                            //                 break;
-                            //             case '5':
-                            //                      $('.agent5').val(agentName);
-                            //                 break;
-                            //             case '6':
-                            //                      $('.agent5').val(agentName);
-                            //                 break;
+                            });                         
 
-                            //         }
 
                         });
                              

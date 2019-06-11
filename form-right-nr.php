@@ -993,7 +993,7 @@
    <label class="col-sm-2 control-label ">tdatetime</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-          <input id="tdatetime" name="tdatetime"  class="form-control tdatetimes"  value="" type="hidden" >
+          <input id="tdatetime" name="tdatetime"  class="form-control tdatetime"  value="" type="hidden" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
