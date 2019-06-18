@@ -18,7 +18,7 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
       <!-- PARTICLES -->
-      <script  src="js/datatables-scripts.js" type="text/javascript"></script>
+<!--       <script  src="js/datatables-scripts.js" type="text/javascript"></script> -->
       <script  src="js/jquery.customize.js" type="text/javascript"></script>
       <script  src="js/updatedataapi.js" type="text/javascript"></script>
       <script  src="js/startcall.js" type="text/javascript"></script>

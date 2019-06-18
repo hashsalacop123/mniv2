@@ -51,9 +51,6 @@ if(isset($_SESSION['loggedIN'])) {
       $response = curl_exec($curl);
       $err = curl_error($curl);
       curl_close($curl);
-
-
-
    ?>
     
         <div class = "container">
@@ -69,8 +66,26 @@ if(isset($_SESSION['loggedIN'])) {
                                   <td>TO DATE:</td>
                                   <td><input name="max" id="max" class="form-control" type="text"></td>
                               </tr>
+                              <tr>
+                                  <td>CLIENT</td>
+                                  <td>
+                                    <div class = "data-resolves">
+                               <select  class="form-control" id = "sendresolves" name="sendresolves">
+                                <option></option>
+                                  <option value="resolve">Resolved</option>
+                              </select>
+
+                                </div>
+                               
+                              </td>
+                              </tr>
+                              <tr>
+                                  <td id = "resolvedata" colspan="5">   <div id="dataresolves"></div></td>
+                              </tr>
                           </tbody>
                           </table>
+
+                        
                        </div>
                        <div class="col-xs-12 col-md-8 col-lg-8 col-xl-8">
                           <div class = "data-features date-filters">
@@ -131,6 +146,7 @@ if(isset($_SESSION['loggedIN'])) {
                                       <option value="13">13-Other</option>
                                       <option value="17">17-No Answer</option>
                                       <option value="18">18-Busy</option>
+                                      <option value="22">22-Do Not Call</option>
                                       <option value="96">96-1st Pass Unworkable</option>
                                       <option value="97">97-Callback requested</option>
                                       <option value="98">98-2x No Answer (priority 7/8/9)</option>
@@ -361,7 +377,7 @@ curl_close($curl);
       </div>
    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
    <script src="js/database.js"></script>>
-     
+       <script  src="js/datatables-scripts.js" type="text/javascript"></script>
 <!--    <div class = "copyright"> Copyright 2019. All Rights By Open Look. Reserved.</div> -->
 
 </html>

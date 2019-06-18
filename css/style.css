@@ -675,4 +675,10 @@ div#callsettings h3 {
 table.dataTable.compact tbody th, table.dataTable.compact tbody td {
     padding: 4px;
     white-space: nowrap;
+}td.check-data input {
+    margin-top: 10px;
+}
+div#dataresolves button {
+    width: 100%;
+    background: #007bff;
 }

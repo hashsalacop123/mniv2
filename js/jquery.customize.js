@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-
+     jQuery('.mask-color').fadeOut('slow');
     var updateCookie = Cookies.get('tokken');
     var countcheck = $('.goodcall').length;
      // console.log(countcheck);

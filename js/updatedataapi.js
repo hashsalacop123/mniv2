@@ -1,4 +1,7 @@
 jQuery(document).ready(function($) {
+    // 06/07/19 13:45
+         
+
      var updateCookie = Cookies.get('tokken');
 
     $(document).on('click', '#update-btn', function() {
@@ -16,38 +19,44 @@ jQuery(document).ready(function($) {
                         (('' + month).length < 2 ? '0' : '') + month + '-' +
                         (('' + day).length < 2 ? '0' : '') + day;
 
-                    var agentName = $('#agentName').val(); 
-                    var datacounting = $('#datacounting').val();
+                    var date = new Date();
+                    var newtimedates = (date.getMonth()<9?'0':'') + (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear().toString().substr(-2) + ' ' + (date.getHours()<10?'0':'') + date.getHours() +':'+ (date.getMinutes()<10?'0':'') + date.getMinutes();
+
+                    
+                     var agentName = $('#agentName').val(); 
+                     var datacounting = $('#datacounting').val();
+
 
                       switch(datacounting)  
                            {
                             case '0':
+
                                      $('.oagent').val(agentName);
-                                     $('.odatetime').val(output);
+                                     $('.odatetime').val(newtimedates);
                                 break;
                             case '1':
                                      $('.tagent').val(agentName);
-                                     $('.tdatetime').val(output);
+                                     $('.tdatetime').val(newtimedates);
                                 break;
                             case '2':
                                       $('.fagent').val(agentName);
-                                      $('.fdatetimes').val(output);
+                                      $('.fdatetimes').val(newtimedates);
                                 break;
                             case '3':
                                     $('.agent4').val(agentName);
-                                    $('.fdatetimes').val(output);
+                                    $('.fdatetimes').val(newtimedates);
                                 break;
                             case '4':
                                      $('.agent5').val(agentName);
-                                     $('.fdatetimes').val(output);
+                                     $('.fdatetimes').val(newtimedates);
                                 break;
                             case '5':
                                      $('.agent5').val(agentName);
-                                     $('.fdatetimes').val(output);
+                                     $('.fdatetimes').val(newtimedates);
                                 break;
                             case '6':
                                      $('.agent5').val(agentName);
-                                     $('.fdatetimes').val(output);
+                                     $('.fdatetimes').val(newtimedates);
                                 break;
                         }
                     var dataCounting = $('#datacounting').val();

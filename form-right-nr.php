@@ -888,8 +888,13 @@
 <label class="col-sm-2 control-label "  >ADVERTISER</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="advertiser" name="advertiser"  class="form-control advertiser"  value="" type="text" >
+ <!--      <input id="advertiser" name="advertiser"  class="form-control advertiser"  value="" type="text" > -->
       <!-- <input id="advertiser_" name="advertiser_"  class="form-control advertiser_"  value="" type="text" > -->
+         <select class="form-control advertiser" id="advertiser" name="advertiser">
+            <option></option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+         </select>
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1277,6 +1282,7 @@
       <option value="13-Other">13-Other</option>
       <option value="17-No Answer">17-No Answer</option>
       <option value="18-Busy">18-Busy</option>
+      <option value="22-Do Not Call">22-Do Not Call</option>
       <option value="96-1st Pass Unworkable">96-1st Pass Unworkable</option>
       <option value="97-Callback requested">97-Callback requested</option>
       <option value="98-2x No Answer (priority 7/8/9)">98-2x No Answer (priority 7/8/9)</option>
