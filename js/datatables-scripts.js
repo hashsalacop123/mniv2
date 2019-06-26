@@ -11,7 +11,7 @@ $(document).on('click','#savesettings', function(){
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://172.16.11.120:8000/api/auth/callset",
+              "url": "http://172.16.11.80:8000/api/auth/callset",
               "method": "PUT",
               "headers": {
                "authorization": "Bearer  " + cookiesTokken,
@@ -228,7 +228,7 @@ $('#userdata').dataTable();
                                           var settings = {
                                               "async": true,
                                               "crossDomain": true,
-                                              "url": "http://172.16.11.120:8000/api/auth/delivered2",
+                                              "url": "http://172.16.11.80:8000/api/auth/delivered2",
                                               "method": "PUT",
                                               "headers": {
                                                  "authorization": "Bearer  " + updateCookie

@@ -406,7 +406,7 @@ jQuery(document).ready(function($) {
                                     "async": true,
                                     "crossDomain": true,
                                     //"url": "https://mniapi.openlookeasydata.com/api/auth/duplicate",
-                                    "url": "http://172.16.11.120:8000/api/auth/duplicate/",
+                                    "url": "http://172.16.11.80:8000/api/auth/duplicate/",
                                     "method": "POST",
                                     "headers": {
                                         "content-type": "application/x-www-form-urlencoded",
@@ -419,7 +419,7 @@ jQuery(document).ready(function($) {
                                             var settings = {
                                                   "async": true,
                                                   "crossDomain": true,
-                                                  "url": "http://172.16.11.120:8000/api/auth/statusupdate",
+                                                  "url": "http://172.16.11.80:8000/api/auth/statusupdate",
                                                   "method": "PUT",
                                                   "headers": {
                                                     "content-type": "application/x-www-form-urlencoded",

@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/userinfo",
-            "url": "http://172.16.11.120:8000/api/auth/userinfo",
+            "url": "http://172.16.11.80:8000/api/auth/userinfo",
             "method": "GET",
             "headers": {
                 "authorization": "Bearer  " + updateCookie,
@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
             "async": true,
             "crossDomain": true,
             //"url": "https://mniapi.openlookeasydata.com/api/auth/startcall",
-            "url": "http://172.16.11.120:8000/api/auth/startcall",
+            "url": "http://172.16.11.80:8000/api/auth/startcall",
             "method": "POST",
             "headers": {
                 "authorization": "Bearer  " + updateCookie,

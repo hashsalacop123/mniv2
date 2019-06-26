@@ -8,7 +8,7 @@
           curl_setopt_array($curl, array(
             CURLOPT_PORT => "8000",
             //CURLOPT_URL => "https://mniapi.openlookeasydata.com/api/auth/historycalls",
-            CURLOPT_URL => "http://172.16.11.120:8000/api/auth/historycalls",
+            CURLOPT_URL => "http://172.16.11.80:8000/api/auth/historycalls",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
