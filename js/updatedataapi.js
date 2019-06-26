@@ -33,18 +33,22 @@ jQuery(document).ready(function($) {
 
                                      $('.oagent').val(agentName);
                                      $('.odatetime').val(newtimedates);
+                                     $('.operator').val(agentName);
                                 break;
                             case '1':
                                      $('.tagent').val(agentName);
                                      $('.tdatetime').val(newtimedates);
+                                     $('.operator').val(agentName);
                                 break;
                             case '2':
                                       $('.fagent').val(agentName);
                                       $('.fdatetimes').val(newtimedates);
+                                      $('.operator').val(agentName);
                                 break;
                             case '3':
                                     $('.agent4').val(agentName);
                                     $('.fdatetimes').val(newtimedates);
+                                    $('.operator').val(agentName);
                                 break;
                             case '4':
                                      $('.agent5').val(agentName);
@@ -53,10 +57,12 @@ jQuery(document).ready(function($) {
                             case '5':
                                      $('.agent5').val(agentName);
                                      $('.fdatetimes').val(newtimedates);
+                                     $('.operator').val(agentName);
                                 break;
                             case '6':
                                      $('.agent5').val(agentName);
                                      $('.fdatetimes').val(newtimedates);
+                                     $('.operator').val(agentName);
                                 break;
                         }
                     var dataCounting = $('#datacounting').val();

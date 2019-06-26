@@ -1283,6 +1283,7 @@
       <option value="17-No Answer">17-No Answer</option>
       <option value="18-Busy">18-Busy</option>
       <option value="22-Do Not Call">22-Do Not Call</option>
+      <option value="19-Will Go Online">19-Will Go Online</option>
       <option value="96-1st Pass Unworkable">96-1st Pass Unworkable</option>
       <option value="97-Callback requested">97-Callback requested</option>
       <option value="98-2x No Answer (priority 7/8/9)">98-2x No Answer (priority 7/8/9)</option>

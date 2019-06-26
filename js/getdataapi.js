@@ -1,7 +1,5 @@
 jQuery(document).ready(function($) {
     
-
-
     var cookiesTokken = Cookies.get('tokken');
 
     $('#update-btn').prop('disabled', true);

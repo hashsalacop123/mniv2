@@ -76,7 +76,7 @@ if(isset($_SESSION['loggedIN'])) {
                               </select>
 
                                 </div>
-                               
+                                <div id = "alldispo"></div>
                               </td>
                               </tr>
                               <tr>
@@ -147,6 +147,7 @@ if(isset($_SESSION['loggedIN'])) {
                                       <option value="17">17-No Answer</option>
                                       <option value="18">18-Busy</option>
                                       <option value="22">22-Do Not Call</option>
+                                      <option value="19-Will Go Online">19-Will Go Online</option>
                                       <option value="96">96-1st Pass Unworkable</option>
                                       <option value="97">97-Callback requested</option>
                                       <option value="98">98-2x No Answer (priority 7/8/9)</option>
