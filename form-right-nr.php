@@ -43,17 +43,17 @@
 <label class="col-sm-2 control-label">CITY/ST/ZIP</label>
 <div class="col-sm-3 inputGroupContainer">
    <div class="input-group">
-      <input id="physcity" name="physcity" placeholder="City"  class="form-control physcity required-right"  value="" type="text" >
+      <input id="physcity" name="physcity" placeholder="City" maxlength="30" class="form-control physcity required-right"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-3 inputGroupContainer">
    <div class="input-group">
-      <input id="physstate" name="physstate" placeholder="State" class="form-control  physstate required-right"  value="" type="text" >
+      <input id="physstate" name="physstate" placeholder="State" maxlength="2" class="form-control  physstate required-right"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-3 inputGroupContainer">
    <div class="input-group">
-      <input id="physzip" name="physzip" placeholder="Zip" class="form-control physzip required-right"  value="" type="text" >
+      <input id="physzip" name="physzip" placeholder="Zip" maxlength="7" class="form-control physzip required-right"  value="" type="text" >
    </div>
 </div>
 
@@ -91,7 +91,7 @@
 <label class="col-sm-3 control-label "  >ADDRCHGREASON</label>
 <div class="col-sm-7 inputGroupContainer " >
    <div class="input-group">
-      <input id="addrchgreason" name="addrchgreason"  class="form-control addrchgreason"  value="" type="text" >
+      <input id="addrchgreason" name="addrchgreason" maxlength="50" class="form-control addrchgreason"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -114,7 +114,7 @@
 <label class="col-sm-2 control-label "  >CITY/ST/ZIP</label>
 <div class="col-sm-3 inputGroupContainer " >
    <div class="input-group">
-      <input id="mailcity" name="mailcity" placeholder="City" class="form-control mailcity"  value="" type="text" >
+      <input id="mailcity" name="mailcity" maxlength="30" placeholder="City" class="form-control mailcity"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-3 inputGroupContainer" >
@@ -124,7 +124,7 @@
 </div>
 <div class="col-sm-3 inputGroupContainer " >
    <div class="input-group">
-      <input id="mailzip" name="mailzip" placeholder="Zip" class="form-control mailzip"  value="" type="text" >
+      <input id="mailzip" name="mailzip" placeholder="Zip" class="form-control mailzip" maxlength="7"  value="" type="text" >
    </div>
 </div>
 <label class="col-sm-1 control-label "><div></div></label>
@@ -167,7 +167,7 @@
 <label class="col-sm-2 control-label "  >ALTPHONE</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="altphone" name="altphone"  class="form-control altphone"  value="" type="text" >
+      <input id="altphone" name="altphone"  class="form-control altphone" maxlength="12"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -179,7 +179,7 @@
 <label class="col-sm-2 control-label "  >FNUMBER</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="fnumber" name="fnumber"  class="form-control fnumber"  value="" type="text" >
+      <input id="fnumber" name="fnumber"  class="form-control fnumber" maxlength="12" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -191,7 +191,7 @@
 <label class="col-sm-2 control-label "  >NNUMBER</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="nnumber" name="nnumber"  class="form-control nnumber"  value="" type="text" >
+      <input id="nnumber" name="nnumber"  class="form-control nnumber" maxlength="12" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -227,7 +227,7 @@
 <label class="col-sm-2 control-label">EXEC1</label>
 <div class="col-sm-8 inputGroupContainer">
    <div class="input-group">
-      <input id="exec1" name="exec1"  class="form-control exec1 required-right"  value="" type="text" >
+      <input id="exec1" name="exec1" maxlength="55" class="form-control exec1 required-right"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer">
@@ -263,7 +263,7 @@
 <label class="col-sm-2 control-label">TITLE1</label>
 <div class="col-sm-8 inputGroupContainer">
    <div class="input-group">
-      <input id="title1" name="title1"  class="form-control title1 required-right"  value="" type="text" >
+      <input id="title1" name="title1"  class="form-control title1 required-right" maxlength="75" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer">
@@ -311,7 +311,7 @@
 <label class="col-sm-2 control-label "  >TITLE2</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="title2" name="title2"  class="form-control title2"  value="" type="text" >
+      <input id="title2" name="title2"  class="form-control title2" maxlength="75"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -701,7 +701,7 @@
 <label class="col-sm-2 control-label">PRODUCTS</label>
 <div class="col-sm-8 inputGroupContainer">
    <div class="input-group">
-      <textarea id="products" name="products"  class="form-control md-textarea products required-right"  value="" rows="3" ></textarea>
+      <textarea id="products" name="products" maxlength="254" class="form-control md-textarea products required-right"  value="" rows="3" ></textarea>
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer">
@@ -725,7 +725,7 @@
 <label class="col-sm-3 control-label "  >EMPCHGREASON</label>
 <div class="col-sm-7 inputGroupContainer " >
    <div class="input-group">
-      <input id="empchgreason" name="empchgreason"  class="form-control empchgreason"  value="" type="text" >
+      <input id="empchgreason" name="empchgreason" maxlength="50" class="form-control empchgreason"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -821,7 +821,7 @@
 <label class="col-sm-2 control-label "  >PADDRESS</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="paddress" name="paddress"  class="form-control paddress"  value="" type="text" >
+      <input id="paddress" name="paddress"  class="form-control paddress" maxlength="100" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -833,17 +833,17 @@
 <label class="col-sm-2 control-label "  >CITY/ST/ZIP</label>
 <div class="col-sm-3 inputGroupContainer " >
    <div class="input-group">
-      <input id="parentcity" name="parentcity" placeholder="City"  class="form-control  parentcity"  value="" type="text" >
+      <input id="parentcity" name="parentcity" placeholder="City"  maxlength="40" class="form-control  parentcity"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-3 inputGroupContainer " >
    <div class="input-group">
-      <input id="parentstat" name="parentstat" placeholder="State"  class="form-control  parentstat"  value="" type="text" >
+      <input id="parentstat" name="parentstat" placeholder="State" maxlength="2" class="form-control  parentstat"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-3 inputGroupContainer " >
    <div class="input-group">
-      <input id="pzip5" name="pzip5"  placeholder="Zip" class="form-control pzip5"  value="" type="text" >
+      <input id="pzip5" name="pzip5"  placeholder="Zip" class="form-control pzip5" maxlength="7" value="" type="text" >
    </div>
 </div>
 <label class="col-sm-1 control-label"><div></div></label>
@@ -876,7 +876,7 @@
 <label class="col-sm-3 control-label "  >PARENT PHONE</label>
 <div class="col-sm-7 inputGroupContainer " >
    <div class="input-group">
-      <input id="onumber" name="onumber"  class="form-control onumber"  value="" type="text" >
+      <input id="onumber" name="onumber"  class="form-control onumber" maxlength="12"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -905,7 +905,7 @@
 <label class="col-sm-2 control-label "  >COMPANYID</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="companyid" name="companyid"  class="form-control companyid"  value="" type="text" >
+      <input id="companyid" name="companyid"  class="form-control companyid" maxlength="19"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -917,7 +917,7 @@
    <label class="col-sm-2 control-label "  >HEADER</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="header" name="header"  class="form-control header"  value="" type="text" >
+         <input id="header" name="header"  class="form-control header" maxlength="6" value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -928,7 +928,7 @@
    <label class="col-sm-2 control-label "  >PRIMARYSIC</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="primarysic" name="primarysic"  class="form-control primarysic"  value="" type="text" >
+         <input id="primarysic" name="primarysic"  class="form-control primarysic" maxlength="4" value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -939,7 +939,7 @@
    <label class="col-sm-2 control-label "  >SIC2</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="sic2" name="sic2"  class="form-control sic2"  value="" type="text" >
+         <input id="sic2" name="sic2"  class="form-control sic2" maxlength="4"  value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -950,7 +950,7 @@
    <label class="col-sm-2 control-label "  >DATASOURCE</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="datasource" name="datasource"  class="form-control datasource"  value="" type="text" >
+         <input id="datasource" name="datasource"  class="form-control datasource" maxlength="9"  value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -964,7 +964,7 @@
 <label class="col-sm-2 control-label "  >CONTACT</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="contact" name="contact"  class="form-control contact"  value="" type="text" >
+      <input id="contact" name="contact"  class="form-control contact" maxlength="30"  value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1050,7 +1050,7 @@
    <label class="col-sm-2 control-label "  >CONFDATE</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="confdate" name="confdate"  class="form-control confdate"  value="" type="date" >
+         <input id="confdate" name="confdate"  class="form-control confdate" maxlength="8" value="" type="date" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -1061,7 +1061,7 @@
    <label class="col-sm-2 control-label "  >LISTNUM</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="listnum" name="listnum"  class="form-control listnum"  value="" type="text" >
+         <input id="listnum" name="listnum"  class="form-control listnum"  maxlength="10" value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -1084,7 +1084,7 @@
 <label class="col-sm-2 control-label "  >BOOKID</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="bookid" name="bookid"  class="form-control bookid"  value="" type="text" >
+      <input id="bookid" name="bookid"  class="form-control bookid" maxlength="4" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1095,7 +1095,7 @@
 <label class="col-sm-2 control-label "  >NEWINYEAR</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="newinyear" name="newinyear"  class="form-control newinyear"  value="" type="text" >
+      <input id="newinyear" name="newinyear"  class="form-control newinyear"  maxlength="4" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1118,7 +1118,7 @@
 <label class="col-sm-2 control-label "  >PCOMMENTS</label>
 <div class="col-sm-8 inputGroupContainer " >
    <div class="input-group">
-      <input id="pcomments" name="pcomments"  class="form-control pcomments"  value="" type="text" >
+      <input id="pcomments" name="pcomments"  class="form-control pcomments" maxlength="78" value="" type="text" >
    </div>
 </div>
 <div class="col-sm-2 inputGroupContainer  ">
@@ -1220,7 +1220,7 @@
    <label class="col-sm-3 control-label "  >SYSGENCOMMENTS</label>
    <div class="col-sm-7 inputGroupContainer " >
       <div class="input-group">
-         <input id="sysgencomments" name="sysgencomments"  class="form-control sysgencomments"  value="" type="text" >
+         <input id="sysgencomments" name="sysgencomments"  class="form-control sysgencomments" maxlength="78" value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">
@@ -1242,7 +1242,7 @@
    <label class="col-sm-2 control-label "  >DPVFOOTNOTE</label>
    <div class="col-sm-8 inputGroupContainer " >
       <div class="input-group">
-         <input id="dpvfootnote" name="dpvfootnote"  class="form-control dpvfootnote"  value="" type="text" >
+         <input id="dpvfootnote" name="dpvfootnote"  class="form-control dpvfootnote" maxlength="4"  value="" type="text" >
       </div>
    </div>
    <div class="col-sm-2 inputGroupContainer  ">

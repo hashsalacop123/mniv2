@@ -9,8 +9,9 @@ jQuery(document).ready(function($) {
 
         if($('#fdisp').find(':selected').prop('disabled')==true){
             alert('You select good update. But you uncheck important fields');
-        }else
-            {
+
+            return false;
+        }
 
                     var d = new Date();
                     var month = d.getMonth() + 1;
@@ -369,6 +370,7 @@ jQuery(document).ready(function($) {
                     });
                     
                     var required = $('.required-comments').val();
+                    var fdisp = $('#fdisp').val();
              
                     if (!fdisp || !required) {
                         Swal.fire({
@@ -444,9 +446,6 @@ jQuery(document).ready(function($) {
                                          window.location.replace('startcall')
                                      },3000)
                                 // location.reload('startcall'); 
-
-                                    
-
                        
                             } else if (
                                 // Read more about handling dismissals
@@ -461,7 +460,7 @@ jQuery(document).ready(function($) {
                         })
                     }
 
-            }
+            
 
         return false;
     });

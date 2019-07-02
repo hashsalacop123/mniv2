@@ -1,3 +1,61 @@
+<?php 
+session_start();    
+if(isset($_SESSION['loggedIN'])) {
+        $_SESSION['loggedIN'] = $_COOKIE['tokken']; 
+          if($_COOKIE['role'] == 1){
+            header("location: /startcall");
+          }
+}else {
+   header("location: login.php");
+}
+?>
+<!doctype html>
+<html lang="en">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<?php include('header.php'); ?>
+<link rel="stylesheet" type="text/css" href="css/duplicate.css">
+
+<body style="background-image: url(img/database.jpg);">
+        <div class="mask-color">
+             <div id="preview-area">
+                <div class="spinner">
+                   <div class="dot1"></div>
+                   <div class="dot2"></div>
+                </div>
+             </div>
+          </div>
+<div class = "header-database">
+	<a href = "database-view">
+		  <ul class = "data-view">
+		    <li><img src="img/mni-logo.png"  class = "img-fluid" alt = "logo" /></li>
+		    <li> <h1 class = "database"> DATABASE <i class="fas fa-database"></i></h1></li>
+		  </ul>
+	</a>
+
+   <a href = "#" id = "logout" >Logout <i class="fas fa-sign-out-alt"></i></a>
+  </div>
+
+    
+        <div class = "container">
+              <div class = "row">
+              	<div class = "col-md-4">
+              		<div class = "data-dropdown">
+              			    <div class = "all_query">
+                       <h4>GROUP FILE NAME</h4>
+	                        <select class="form-control" id="group-id" name="group-id">
+	                            <option ></option>
+	                            <option value = "1561740155">1561740155</option>
+	                            <option value = "1561388137">1561388137</option>
+	                            <option value = "1561565003">1561565003</option>
+	                        </select>
+	                    </div>
+              		</div>
+              	</div>
+              	<div class = "col-md-4"></div>
+              	<div class = "col-md-4"></div>
+                 <div class = "col-md-12">
+                     <div  id="dataids">
+                      <h3 class="data-title">Delivered</h3>
      <?php
 
     $curl = curl_init();
@@ -29,7 +87,7 @@
 
 ?>
 
-      <div style="display: none; width: 980px; height: auto;" class = " files-delivered" id = "files-delivered">
+     
         <h3 class="data-title">Already Export</h3>
               <table id="delivertable" class="table table-striped table-bordered" style="width:100%">
                         
@@ -421,5 +479,37 @@
                 
                        </tbody>
                      </table>
-      </div>
+  
+                
+              </div>
+        </div>
+
+           
+
+
+    		</div>
+  	</div>
+     
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+window.jQuery || document.write('<script src="http://localhost/mniv2/js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="js/duplicate.js"></script>
+<!--    <div class = "copyright"> Copyright 2019. All Rights By Open Look. Reserved.</div> -->
+
+</html>
+
 

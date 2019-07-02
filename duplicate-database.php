@@ -21,15 +21,85 @@ if(isset($_SESSION['loggedIN'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+           <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-        <title> Datatable Realtime </title>
+        <link rel="stylesheet" type="text/css" href="css/duplicate.css">
+        <title> Full Database </title>
     </head>
-    <body>
+    <!doctype html>
+<html lang="en">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+<link rel="stylesheet" type="text/css" href="css/duplicate.css">
+    <body style="background-image: url(img/database.jpg);">
+            <div class="mask-color">
+                 <div id="preview-area">
+                    <div class="spinner">
+                       <div class="dot1"></div>
+                       <div class="dot2"></div>
+                    </div>
+                 </div>
+              </div>
+
+
     	<div class = "container">
     		<div class = "row">
     			<div class  = "container" id = "realtimedata">
-                 <div class = "col-md-12"><h3 class="data-title">Uploaded Data and Activity</h3></div>
-                 <div class = "col-md-12">
+                 <div class = "col-md-12"><a href = "database-view" class = "go-back-home"><h3 class="data-title">One Stop Filter!!</h3></a></div>
+                 <div class = "col-md-4">
+                   <div class = "dates_query">
+                    <h4>Dates</h4>
+                    <table  class = "date-filters" border="0" cellspacing="5" cellpadding="5">
+                        <tbody>
+                              <tr>
+                                  <td>FROM DATE:</td>
+                                  <td><input name="min" id="min" class="form-control" type="text"></td>
+                              </tr>
+                              <tr>
+                                  <td>TO DATE:</td>
+                                  <td><input name="max" id="max" class="form-control" type="text"></td>
+                              </tr>
+                          </tbody>
+                          </table>
+                   </div>
+                 </div>
+                  <div class = "col-md-4">
+                    <div class = "all_query">
+                       <h4>Group ID's</h4>
+                       <input type="text" class="form-control" id="group-id" name="group-id">
+              
+                    </div>
+                  </div>
+                  <div class = "col-md-4">
+                     <h4>Disposition</h4>
+                           <select class="form-control" id="group-fdisp" name="fdisp">
+                              <option></option>
+                              <option value="01">01-Good Update</option>
+                              <option value="03">03-Incomplete Update</option>
+                              <option value="05">05-Already Answered</option>
+                              <option value="06">06-No Manufacturing</option>
+                              <option value="07">07-Out of Business</option>
+                              <option value="08">08-Send Information</option>
+                              <option value="09">09-Refusal/Unworkable</option>
+                              <option value="10">10-Wrong Number</option>
+                              <option value="11">11-Answering Machine</option>
+                              <option value="12">12-Callback</option>
+                              <option value="13">13-Other</option>
+                              <option value="17">17-No Answer</option>
+                              <option value="18">18-Busy</option>
+                              <option value="22">22-Do Not Call</option>
+                              <option value="19-Will Go Online">19-Will Go Online</option>
+                              <option value="96">96-1st Pass Unworkable</option>
+                              <option value="97">97-Callback requested</option>
+                              <option value="98">98-2x No Answer (priority 7/8/9)</option>
+                              <option value="99">99-AM 3x</option>
+                           </select>
+
+                           
+                  </div>
+                  <div class = "col-md-8"></div>
+                 <div class = "col-md-12 custom-datatables">
+                  <hr>
                    <table id="maintable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
@@ -213,11 +283,10 @@ if(isset($_SESSION['loggedIN'])) {
                       </thead>
                       <tbody>
              <?php 
-
                     $curl = curl_init();
                     curl_setopt_array($curl, array(
                       CURLOPT_PORT => "8000",
-                      CURLOPT_URL => "http://172.16.11.80:8000/api/auth/duplicatestatus/",
+                      CURLOPT_URL => "http://172.16.11.80:8000/api/auth/allduplicatedata",
                       CURLOPT_RETURNTRANSFER => true,
                       CURLOPT_ENCODING => "",
                       CURLOPT_MAXREDIRS => 10,
@@ -225,9 +294,7 @@ if(isset($_SESSION['loggedIN'])) {
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "GET",
                       CURLOPT_HTTPHEADER => array(
-                         "authorization: Bearer  ".$bearer."",
-                        "cache-control: no-cache",
-                        "postman-token: 33259bf3-35fe-d00f-b321-365ceebea27b"
+                        "authorization: Bearer  ".$bearer.""
                       ),
                     ));
 
@@ -241,9 +308,8 @@ if(isset($_SESSION['loggedIN'])) {
                     } else {
                       
                     }
-                            $dataarrayDats = json_decode($nrMniData, true);
 
-                   
+                            $dataarrayDats = json_decode($nrMniData, true);                   
                             $dataId = 0;
                             if (is_array($dataarrayDats) || is_object($dataarrayDats))
                                 { 
@@ -254,6 +320,15 @@ if(isset($_SESSION['loggedIN'])) {
                                 $dateformat  = new DateTime($dataarrays['created_at']);
                                 $callstart = new DateTime($dataarrays['callstart']);
                                 $advertiser = $dataarrays['advertiser'];
+                                $odate = $dataarrays['odatetime'];
+                                  // m/d/yy H:i
+                         //     date_default_timezone_set('America/Chicago');
+                              //$datetime = new DateTime($odate);
+                              // $datetime->add(new DateInterval('P10D'));
+                              //  $date = new DateTime('1:00:00');
+                              // $date->add(new DateInterval('PT10H'));
+                              // echo $date->format('H:i:s a'); //"prints" 11:00:00 a.m
+
 
                                 if($advertiser == 'Yes') {
                                   $advertiser = 'Y';
@@ -391,7 +466,7 @@ if(isset($_SESSION['loggedIN'])) {
                                        echo '<td>'.$dataarrays['companyid'].'</td>';
                                        echo '<td>'.$dataarrays['datasource'].'</td>';
                                        echo '<td>'.$dataarrays['contact'].'</td>';
-                                       echo '<td>'.$dataarrays['odatetime'].'</td>';
+                                       echo '<td>'.$odate.'</td>';
                                        echo '<td>'.$dataarrays['ocommetns'].'</td>';
                                        echo '<td>'.$dataarrays['tdatetime'].'</td>';
                                        echo '<td>'.$dataarrays['tcomments'].'</td>';
@@ -440,6 +515,9 @@ if(isset($_SESSION['loggedIN'])) {
                                   echo '</tr>';
                     
                             $dataId++;
+
+                            flush();
+                             ob_flush();
                               }
 
                                 }
@@ -453,19 +531,17 @@ if(isset($_SESSION['loggedIN'])) {
      
     		</div>
     	</div>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-       <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script>
+            window.jQuery || document.write('<script src="http://localhost/mniv2/js/jquery.min.js"><\/script>')
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+            <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+            <script type="text/javascript" src="js/duplicate.js"></script>
     </body>
     </html>
 
-    <script type="text/javascript">
-    	
-    	jQuery(document).ready(function($) { 
-
-         var table = $('#maintable').DataTable();
- });
-
-
-
-   
-    </script>

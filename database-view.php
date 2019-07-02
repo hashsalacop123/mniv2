@@ -8,7 +8,6 @@ if(isset($_SESSION['loggedIN'])) {
 }else {
    header("location: login.php");
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -96,7 +95,7 @@ if(isset($_SESSION['loggedIN'])) {
                                 </li>
                                 <li>
                                   <h5>UPLOADED</h5>
-                                   <a  data-fancybox data-src="#dataids" href="javascript:;" id = "needtocall" class="btn btn-primary"><i class="fa fa-building"></i></a>
+                                   <a   href="uploaded-data"  target="_blank" class="btn btn-primary"><i class="fa fa-building"></i></a>
                                 </li>
                                   <li>
                                   <h5>ADD USER</h5>
@@ -112,11 +111,11 @@ if(isset($_SESSION['loggedIN'])) {
                                 </li>
                                 <li>
                                   <h5>DELIVERED</h5>
-                                  <a data-fancybox  data-options='{"src": "#files-delivered", "touch": false, "smallBtn" : false}' class="btn btn-primary"><i class="fa fa-trash-alt"></i></i></a>
+                                  <a href="delivered" target="_blank" class="btn btn-primary"><i class="fa fa-trash-alt"></i></i></a>
                                 </li>
                                <li>
                                   <h5>HISTORY</h5>
-                                  <a data-fancybox  data-options='{"src": "#historycalls", "touch": false, "smallBtn" : false}' class="btn btn-primary"><i class="fas fa-history"></i></a>
+                                  <a  href = "duplicate-database" target="_blank" class="btn btn-primary"><i class="fas fa-history"></i></a>
                                 </li>
                                 <li>
                                   <h5>SETTINGS</h5>
@@ -239,8 +238,6 @@ if(isset($_SESSION['loggedIN'])) {
     
 
         <?php include('files-upload.php'); ?>
-        <?php include('files-delivered.php'); ?>
-        <?php include('history-view.php'); ?>
 <?php
 
       $curl = curl_init();
@@ -377,7 +374,7 @@ curl_close($curl);
             
       </div>
    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-   <script src="js/database.js"></script>>
+   <script src="js/database.js"></script>
        <script  src="js/datatables-scripts.js" type="text/javascript"></script>
 <!--    <div class = "copyright"> Copyright 2019. All Rights By Open Look. Reserved.</div> -->
 

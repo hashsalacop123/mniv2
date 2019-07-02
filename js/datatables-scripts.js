@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) { 
+//timesayop
 
 var cookiesTokken = Cookies.get('tokken');
 
@@ -295,15 +296,21 @@ $('#userdata').dataTable();
       });
 
     // SELECTION CONDTIONS AND DATES
-
+    $('#clientUploaded').DataTable();
    
-    $('#idsSearch').DataTable();
+    $('#idsSearch').DataTable({
+                  dom: 'lBfrtip',
+                  buttons: [{
+                    extend: 'csv',
+                    title: 'uploadeddata-' + dateFilename
+                }]
+    });
      $('#history').DataTable({
             "scrollX": true,
                   dom: 'lBfrtip',
                   buttons: [{
                     extend: 'csv',
-                    title: dateFilename
+                    title: 'history-' + dateFilename
                 }]
      });
 

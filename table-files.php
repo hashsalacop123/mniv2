@@ -1,72 +1,4 @@
                  <div class = "col-md-12">
-                     <div style="display: none;" id="dataids">
-                      <h3 class="data-title">Uploaded Data and Activity</h3>
-                        <table id="idsSearch" class="ids-excel display compact" style="width:100%">
-                            <thead>
-                                <tr>
-                                  <th>ID's</th>
-                                   <th>Agent</th>
-                                  <th>Compname</th>
-                                  <th>vnumber</th>
-                                  <th>Status Call</th>
-                                  <th>Uploaded Date</th>
-                                  <th>Group ID</th>
-                                  <th>Number Of Call</th>
-                                   <th>File Name</th>
-                                  <th>Reset Call Status</th>
-                                </tr>
-                              </thead>
-                               <tbody>
-                          <?php 
-                                 $dataUploaded = json_decode($response, true);
-                                  $dataId = $dataUploaded;
-
-                                    if (is_array($dataId) || is_object($dataId))
-                                      {
-                                              foreach ($dataId as $key => $dataIds) {
-
-                                    $callStatus = $dataIds['status_call'];
-                                    $numberCalls = $dataIds['callPriority'];
-                                    $dateuploaded = new DateTime ($dataIds['created_at']);
-                                    $filesGroup = $dataIds['filesName'];
-                                    $idrow = $dataIds['id'];
-                                    $userID = $dataIds['user_id'];
-
-                                      echo '<tr>';
-                                       echo '<td>'.$idrow.'</td>';
-
-
-                                        echo '<td>'.$dataIds['user']['name'].'</td>';
-                                        echo '<td>'.$dataIds['compname'].'</td>';
-                                         echo '<td>'.$dataIds['vnumber'].'</td>';
-                                        echo '<td>'; 
-                                          if($callStatus == '2'){
-                                           echo  '<p class = "on-call">On-Call</p>';
-                                          }else {
-                                            echo '<p class = "free-to-class">Free</p>';
-                                          }
-                                        echo '</td>';
-                                        echo '<td>'.$dateuploaded->format('Y/m/d').'</td>';
-                                        echo '<td class = "different"><input type = "text"   value = "'.rtrim($filesGroup,".csv").'" ></td>';
-                                        echo '<td>'.$numberCalls.'</td>';
-                                        echo '<td>'.$dataIds['filesNamePath'].'</td>';
-                                        echo '<td>';
-
-                                          if($callStatus == '2') {
-                                            echo   '<button id = '.$idrow.' class = "btn btn-danger resetStatus">Reset Status <i class="fa fa-phone" aria-hidden="true"></i></button>';
-                                          }
-
-                                       echo '</td>';
-                                     
-                                      echo "</tr>";
-                                  }
-
-                                      }
-                                
-                            ?>
-                           </tbody>
-                        </table>
-                       </div>
                 
 
                   <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -294,7 +226,15 @@
                                 $dateformat  = new DateTime($dataarrays['created_at']);
                                 $callstart = new DateTime($dataarrays['callstart']);
                                 $advertiser = $dataarrays['advertiser'];
+                                $odatetime = $dataarrays['odatetime'];
+                                // 07/2/19 01:45
+                                  // $timestamp = strtotime($odatetime) - (640*60);
+                                  // $result = date("m/d/y H:i", $timestamp);
+                                  // echo '<pre>';
 
+                                  // echo $odatetime .' | ';
+                                  // echo $result;
+                                  // print_r($result);
                                 if($advertiser == 'Yes') {
                                   $advertiser = 'Y';
                                 }else{
@@ -431,7 +371,7 @@
                                        echo '<td>'.$dataarrays['companyid'].'</td>';
                                        echo '<td>'.$dataarrays['datasource'].'</td>';
                                        echo '<td>'.$dataarrays['contact'].'</td>';
-                                       echo '<td>'.$dataarrays['odatetime'].'</td>';
+                                       echo '<td>'.$odatetime.'</td>';
                                        echo '<td>'.$dataarrays['ocommetns'].'</td>';
                                        echo '<td>'.$dataarrays['tdatetime'].'</td>';
                                        echo '<td>'.$dataarrays['tcomments'].'</td>';
